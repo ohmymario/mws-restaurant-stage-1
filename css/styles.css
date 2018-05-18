@@ -394,15 +394,43 @@ nav h1 a {
 
 /* ====================== Mediaqueries ====================== */
 
+/* MIGHT REMOVE AS WORKING MOBILE FIRST */
 @media screen and (max-width: 640px) {
   body {
-    background-color: yellow;
+    /* background-color: yellow; */
   }
 } 
 
-@media screen and (min-width: 641px) and (max-width: 960px) {
+
+@media screen and (min-width: 768px) and (max-width: 960px) {
   body {
-    background-color: orange;
+    width: 96vw;
+    margin: 0 auto;
+  }
+  body, td, th, p, ul, li {
+    font-size: 1.2rem;
+  }
+  #restaurants-list li {
+    flex-basis: calc((100% / 2 ) - 1em)
+  }
+  #restaurants-list li h1{
+    font-size: 1.2em;
+  }
+  #restaurants-list li a {
+    align-self: center;
+    width: 80%;
+    font-size: .8em;
+  }
+  .filter-options h2 {
+    font-size: 1.7rem;
+  }  
+  .filter-options select {
+    flex-basis: calc((100% / 2 ) - 1em);
+    min-width: 47%;
+    margin: .5em;
+  }
+  .filter-options select:last-child {
+    margin-top: 8px;
   }
 } 
 
