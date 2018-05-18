@@ -145,7 +145,7 @@ nav h1 a {
 /* ====================== Map ====================== */
 
 #map {
-  height: 400px;
+  height: 45vh;
   width: 100%;
   background-color: var(--eggshell);
 }
