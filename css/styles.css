@@ -49,7 +49,8 @@ a img {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-family: 'Roboto', sans-serif;
   margin: 0 0 20px;
 }
 
@@ -82,7 +83,7 @@ header {
 
   background-color: #444;
   color: #aaa;
-  font-size: 8pt;
+  font-size: .6rem;
   letter-spacing: 2px;
   
   text-align: center;
@@ -104,7 +105,7 @@ nav h1 {
 
 nav h1 a {
   color: var(--white);
-  font-size: 14pt;
+  font-size: 1.2rem;
   font-weight: 200;
   letter-spacing: 10px;
   text-transform: uppercase;
@@ -174,7 +175,7 @@ nav h1 a {
 
 .filter-options h2 {
   color: var(--white);
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: normal;
   letter-spacing: 0.5px;
   line-height: 1;
@@ -183,10 +184,7 @@ nav h1 a {
 
 .filter-options select {
   background-color: var(--white);
-  border: 1px solid var(--white);
-  font-family: Arial, sans-serif;
-  font-size: 11pt;
-  height: 35px;
+  font-size: 1rem;
   letter-spacing: 0;
   margin: 8px;
   padding: 0 10px;
