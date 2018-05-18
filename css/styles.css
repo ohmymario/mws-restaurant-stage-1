@@ -197,11 +197,18 @@ nav h1 a {
 }
 
 /* #endregion */
+
+/* #region Restaurant Listing */ 
+
 #restaurants-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+
   background-color: #f3f3f3;
   list-style: outside none none;
-  margin: 0;
-  padding: 30px 15px 60px;
+  margin: 0 auto;
+  padding: 10px 5px 60px;
   text-align: center;
 }
 
