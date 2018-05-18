@@ -160,8 +160,10 @@ nav h1 a {
 /* #region Restaurant Filtering Styles */
 
 .filter-options {
+  font-family: 'Roboto', sans-serif;
   display: flex;
-  flex-flow: column nowrap;
+  /* flex-flow: column nowrap; */
+  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
