@@ -261,17 +261,28 @@ nav h1 a {
 }
 
 #restaurants-list li a {
-  background-color: orange;
-  border-bottom: 3px solid #eee;
+  background: rgb(255, 165, 0);
+  border: 1px solid rgba(0, 0, 0, 0.014);
+  box-shadow: 0 .05em .25em rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   color: var(--white);
-  display: inline-block;
-  font-size: 1.1rem;
-  margin: 5px 0 0;
-  padding: 15px 30px 10px;
+  
+  font-size: 1.1em;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
+  text-shadow: 0 -.05em 0.05em rgba(0, 0, 0, 0.5);
+  
+  /* display: inline-block; */
+  margin: 5px 0 0;
+  padding: .95rem 1.8rem .6rem;
+}
+
+#restaurants-list li a:hover {
+  text-shadow: 0 -.05em 0.05em rgba(0, 0, 0, 0.5);
+  background: rgba(255, 166, 0, 0.788);
+  border: 1px solid rgba(0, 0, 0, 0.164);
+  box-shadow: 0 .05em .25em rgba(0, 0, 0, 0.603);
 }
 
 /* #endregion */
