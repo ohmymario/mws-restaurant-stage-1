@@ -57,6 +57,16 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
   display: block;
 }
 
+header {
+  width: 100%;
+  display: flex;
+  height: 80px;
+  align-items: center;
+  background-color: #252831;
+  box-shadow: 0 5px 4px -4px black;
+  z-index: 1;
+}
+
 #maincontent {
   background-color: #f3f3f3;
   min-height: 100%;
@@ -74,10 +84,10 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 
 /* ====================== Navigation ====================== */
 
+/* #region Navigation Styles */
+
 nav {
   width: 100%;
-  height: 80px;
-  background-color: #252831;
   text-align: center;
 }
 
@@ -129,6 +139,8 @@ nav h1 a {
   color: #01447e;
   text-decoration: underline;
 }
+
+/* #endregion */
 
 /* ====================== Map ====================== */
 
