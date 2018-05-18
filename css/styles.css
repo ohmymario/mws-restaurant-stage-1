@@ -180,15 +180,26 @@ nav h1 a {
   letter-spacing: 0.5px;
   line-height: 1;
   margin: 5px 0 0 0 ;
+
+  flex-basis: 100%;
+  text-align: center;
+  
 }
 
 .filter-options select {
   background-color: var(--white);
+  /* font-family: Arial, sans-serif; */
   font-size: 1rem;
+  height: 1.7em;
   letter-spacing: 0;
   margin: 8px;
   padding: 0 10px;
-  width: 90%;
+  flex-basis: 90%;
+  min-width: 90%;
+
+  background: #f1f1f1 linear-gradient(hsla(0, 0%, 100%, .2), transparent);
+  border: 1px solid rgba(0, 0, 0, 0.014);
+  box-shadow: 0 .05em .7em rgba(0, 0, 0, 0.5);
 }
 
 .filter-options select:last-child {
