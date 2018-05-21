@@ -203,7 +203,6 @@ nav h1 a:focus {
 
 .filter-options select {
   background-color: var(--white);
-  /* font-family: Arial, sans-serif; */
   font-size: 1rem;
   height: 1.7em;
   letter-spacing: 0;
@@ -255,9 +254,10 @@ nav h1 a:focus {
   flex-flow: column nowrap;
   font-family: 'Roboto', sans-serif;
   margin: .5em;
-  min-height: 400px;
+  /* min-height: 400px; */
   padding: .5em;
-  max-width: 100%;
+  /* max-width: 100%; */
+  flex-basis: 100%;
   text-align: left;
 }
 
@@ -329,6 +329,8 @@ nav h1 a:focus {
 }
 
 /* #endregion */
+
+/* #region Restaurant Details */
 
 .inside header {
   position: fixed;
@@ -435,7 +437,10 @@ nav h1 a:focus {
   color: #666;
 }
 
-/* ====================== Mediaqueries ====================== */
+/* #endregion */
+
+/* #region Mediaqueries */
+
 
 /* MIGHT REMOVE AS WORKING MOBILE FIRST */
 @media screen and (max-width: 640px) {
