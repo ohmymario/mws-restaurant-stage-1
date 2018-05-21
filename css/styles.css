@@ -89,6 +89,18 @@ header {
   text-transform: uppercase;
 }
 
+/* From W3.org https://www.w3.org/WAI/tutorials/forms/labels/#using-aria-labelledby */
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
 /* #endregion */
 
 /* #region Navigation Styles */
