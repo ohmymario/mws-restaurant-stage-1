@@ -109,6 +109,7 @@ nav h1 a {
   font-weight: 200;
   letter-spacing: 10px;
   text-transform: uppercase;
+  padding-left: 5px;
 }
 
 #breadcrumb {
