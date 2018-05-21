@@ -272,7 +272,13 @@ nav h1 a {
 }
 
 #restaurants-list li a {
+
+  /* Previous color  */
   background: rgb(255, 165, 0);
+
+  /* Dif color and better contrast ratio */
+  background: rgb(0, 125, 187);
+
   border: 1px solid rgba(0, 0, 0, 0.014);
   box-shadow: 0 .05em .25em rgba(0, 0, 0, 0.5);
   border-radius: 5px;
