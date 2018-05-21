@@ -153,7 +153,7 @@ nav h1 a {
 /* ====================== Map ====================== */
 
 #map {
-  height: 45vh;
+  height: 40vh;
   width: 100%;
   background-color: var(--eggshell);
 }
