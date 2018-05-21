@@ -297,7 +297,7 @@ nav h1 a {
 
 #restaurants-list li a:hover {
   text-shadow: 0 -.05em 0.05em rgba(0, 0, 0, 0.5);
-  background: rgba(255, 166, 0, 0.788);
+  background: rgba(0, 125, 187, 0.795);
   border: 1px solid rgba(0, 0, 0, 0.164);
   box-shadow: 0 .05em .25em rgba(0, 0, 0, 0.603);
 }
