@@ -268,7 +268,7 @@ nav h1 a {
 
 #restaurants-list p:last-of-type {
   font-size: .9em;
-  color: hsla(0, 0%, 0%, 0.61);;
+  color: hsla(0, 0%, 0%, 0.61);
 }
 
 #restaurants-list li a {
