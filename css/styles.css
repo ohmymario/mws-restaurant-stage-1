@@ -39,10 +39,9 @@ a {
   text-decoration: none;
 }
 
-a:hover, a:focus {
+/* a:hover, a:focus {
   color: #3397db;
-  text-decoration: none;
-}
+} */
 
 a img {
   border: none 0px var(--white);
@@ -121,6 +120,10 @@ nav h1 a {
   letter-spacing: 10px;
   text-transform: uppercase;
   padding-left: 5px;
+}
+
+nav h1 a:focus {
+  color: rgb(255, 115, 0);;
 }
 
 #breadcrumb {
@@ -219,6 +222,11 @@ nav h1 a {
   margin-top: 2px;
 }
 
+.filter-options select:focus {
+  border-color: rgb(255, 115, 0);
+  box-shadow: 0 0 1em 2px rgba(255, 115, 0, 0.842);
+}
+
 /* #endregion */
 
 /* #region Restaurant Listing */ 
@@ -312,6 +320,12 @@ nav h1 a {
   background: rgba(0, 125, 187, 0.795);
   border: 1px solid rgba(0, 0, 0, 0.164);
   box-shadow: 0 .05em .25em rgba(0, 0, 0, 0.603);
+}
+
+#restaurants-list li a:focus{
+  background: rgba(54, 59, 61, 0.795);
+  border-color: rgb(255, 115, 0);
+  box-shadow: 0 0 1em 0px rgba(255, 115, 0, 0.842);
 }
 
 /* #endregion */
