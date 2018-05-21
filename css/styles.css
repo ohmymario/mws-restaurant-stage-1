@@ -418,7 +418,6 @@ nav h1 a {
   }
 } 
 
-
 @media screen and (min-width: 768px) and (max-width: 960px) {
   body {
     width: 96vw;
@@ -453,12 +452,79 @@ nav h1 a {
 
 @media screen and (min-width: 961px) and (max-width: 1280px) {
   body {
-    background-color: red;
+    /* background-color: red; */
+    width: 90vw;
+    margin: 0 auto;
   }
+  #restaurants-list li {
+    flex-basis: calc((100% / 3 ) - 1em)
+} 
+  #restaurants-list li h1{
+    font-size: 1.2em;
+  }
+  .filter-options h2 {
+    font-size: 1.7rem;
+  }  
+  .filter-options select {
+    flex-basis: calc((100% / 2 ) - 1em);
+    min-width: 47%;
+    margin: .5em;
+  }
+  .filter-options select:last-child {
+    margin-top: 8px;
+  }
+
 } 
 
-@media screen and (min-width: 1281px) and (max-width: 1800px) {
+@media screen and (min-width: 1281px) {
   body {
-    background-color: blue;
+    /* background-color: blue; */
+    width: 90vw;
+    margin: 0 auto;
+  }
+  #map {
+    height: 35vh;
+  }
+  #restaurants-list li {
+    flex-basis: calc((100% / 5 ) - 1em)
+  }
+  #restaurants-list li h1{
+    font-size: 1.05em;
+  }
+  #restaurants-list p {
+    margin: 0;
+    font-size: .9em;
+  }
+  #restaurants-list p:last-of-type {
+    font-size: .714em;
+  }
+  #restaurants-list li a {
+    align-self: center;
+    width: 80%;
+    font-size: .8em;
+    padding: 0.25rem 0rem 0.2rem;
+  }
+  .filter-options {
+    justify-content: flex-start;
+  }
+  .filter-options h2 {
+    flex-basis: auto;
+    padding-left: 15px;
+    text-align: left;
+    font-size: .9rem;
+  }  
+  .filter-options select {
+    flex-basis: 12%;
+    min-width: 12%;
+    margin: .5em;
+  }
+  .filter-options select:last-child {
+    margin-top: 8px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  #restaurants-list p:last-of-type {
+    font-size: .8em;
   }
 }
