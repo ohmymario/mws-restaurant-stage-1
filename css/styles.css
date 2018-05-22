@@ -557,8 +557,8 @@ nav h1 a:focus {
     font-size: .9rem;
   }  
   .filter-options select {
-    flex-basis: 12%;
-    min-width: 12%;
+    flex-basis: 15%;
+    min-width: 15%;
     margin: .5em;
   }
   .filter-options select:last-child {
