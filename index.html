@@ -13,16 +13,17 @@
 <body>
   <header>
     <nav>
+      <a href="#filter" class="visuallyhidden">jump to filter</a>
       <h1><a href="/">Restaurant Reviews</a></h1>
     </nav>
   </header>
 
   <main id="maincontent">
     <section id="map-container">
-      <div id="map"></div>
+      <div id="map" role="application" aria-hidden="true" ></div>
     </section>
     <section>
-      <div class="filter-options">
+      <div class="filter-options" id="filter">
         <h2>Filter Results</h2>
         <label for="neighborhoods-select" class="visuallyhidden">Select your neighborhood</label>
         

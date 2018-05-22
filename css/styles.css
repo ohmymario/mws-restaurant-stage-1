@@ -98,6 +98,18 @@ header {
   padding: 0;
   position: absolute;
   width: 1px;
+  font-size: .7em;
+}
+
+.visuallyhidden:focus {
+  position: initial;
+  border: initial;
+  clip: initial;
+  height: initial;
+  margin: initial;
+  overflow: initial;
+  padding: initial;
+  width: initial;
 }
 
 /* #endregion */
