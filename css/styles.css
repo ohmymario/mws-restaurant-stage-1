@@ -17,7 +17,7 @@ body, td, th, p {
 body {
   background-color: #fdfdfd;
   width: 100vw;
-  margin: 0 auto;
+  margin: 0;
   position: relative;
 
   /* for desktop versions */
@@ -70,6 +70,8 @@ header {
   width: 100%;
   background-color: #f3f3f3;
   min-height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
 }
 
 #footer {
@@ -135,7 +137,12 @@ nav h1 a {
 }
 
 nav h1 a:focus {
-  color: rgb(255, 115, 0);;
+  color: rgb(255, 115, 0);
+}
+
+body.inside > header > nav {
+  height: 65%;
+  display: flex;
 }
 
 #breadcrumb {
@@ -144,7 +151,9 @@ nav h1 a:focus {
   background-color: #eee;
   font-size: 17px;
   margin: 0;
-  width: calc(50% - 80px);
+  width: 100%;
+  height: 35%;
+  box-sizing: border-box;
 }
 
 /* Display list items side by side */
@@ -347,17 +356,31 @@ nav h1 a:focus {
 .inside header {
   position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+  height: 7.5em;
   width: 100%;
-  z-index: 1000;
+  overflow: hidden;
+  display: block;
+
+
+}
+
+/* .inside header h1 {
+  padding: 15px;
+} */
+
+.restaurant-view{
+  padding-top: 7.5em;
 }
 
 .inside #map-container {
   background: blue none repeat scroll 0 0;
-  height: 87%;
-  position: fixed;
+  height: 50px;
+  width: 100%;
+  /* position: fixed; */
   right: 0;
   top: 80px;
-  width: 50%;
 }
 
 .inside #map {
@@ -406,14 +429,14 @@ nav h1 a:focus {
 }
 
 #restaurant-container, #reviews-container {
-  border-bottom: 1px solid #d9d9d9;
-  border-top: 1px solid var(--white);
-  padding: 140px 40px 30px;
-  width: 50%;
+  /* border-bottom: 1px solid #d9d9d9; */
+  /* border-top: 1px solid var(--white); */
+  /* padding: 140px 40px 30px; */
+  /* width: 50%; */
 }
 
 #reviews-container {
-  padding: 30px 40px 80px;
+  /* padding: 30px 40px 80px; */
 }
 
 #reviews-container h2 {
