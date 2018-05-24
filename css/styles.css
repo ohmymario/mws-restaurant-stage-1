@@ -363,7 +363,7 @@ body.inside > header > nav {
   overflow: hidden;
   display: block;
 
-
+  box-shadow: none;
 }
 
 .restaurant-view {
@@ -372,11 +372,12 @@ body.inside > header > nav {
 
 .inside #map-container {
   background: blue none repeat scroll 0 0;
-  height: 50px;
+  height: 30vh;
   width: 100%;
   /* position: fixed; */
   right: 0;
   top: 80px;
+  border-bottom: 1px solid var(--white);
 }
 
 .inside #map {
