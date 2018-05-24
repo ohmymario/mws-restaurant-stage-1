@@ -2,7 +2,7 @@
 /* CSS Document */
 
 :root {
-  --white: #fff;
+  --white: rgb(252, 252, 252);
   --eggshell: #ccc;
 }
 
@@ -609,7 +609,7 @@ table#restaurant-hours tr:hover {
   }
   #restaurants-list li {
     flex-basis: calc((100% / 3 ) - 1em)
-} 
+  } 
   #restaurants-list li h1{
     font-size: 1.2em;
   }
@@ -643,7 +643,7 @@ table#restaurant-hours {
 
 .restaurant-view#maincontent {
   flex-flow: row wrap;
-} 
+}
 
 #restaurant-container, #reviews-container {
   width: 50%;
@@ -726,7 +726,7 @@ table#restaurant-hours {
 
   .restaurant-view#maincontent {
     flex-flow: row wrap;
-}
+  }
 
   #restaurant-container, #reviews-container {
     width: 50%;
@@ -750,3 +750,27 @@ table#restaurant-hours {
     font-size: .8em;
   }
 }
+    
+/* #endregion */
+
+/* TODO create another breakpoint for 1440px and up text size ✔️ */
+/* TODO remove body margin in larger versions ✔️ */
+/* Change font ✔️ */
+/* TODO Fix footer contrast  ✔️ */
+/* TODO Fix h2 container contrast  ✔️ */
+/* TODO add hover effect to buttons ✔️ */
+/* TODO Fix button contrast  ✔️ */
+/* TODO Focus needs better colors ✔️ */
+/* TODO role="application" on map  ✔️ */
+/* TODO maybe add skiplink to skip over map ✔️ */
+/* TODO hide map with aria-hidden ✔️ */
+/* aria-label for view details button ✔️ */
+/* TODO cache everything ✔️ */
+/* TODO move breadcrumbs to nav */
+/* TODO label breadcrumbs */
+
+
+/* FOR LARGER VERSIONS */
+/* width: 96vw; */
+/* margin: 0 auto; */
+/* margin-top: .2em; */
