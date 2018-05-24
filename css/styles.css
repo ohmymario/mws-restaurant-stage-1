@@ -395,11 +395,12 @@ body.inside > header > nav {
 #restaurant-name {
   color: #f18200;
   font-family: 'Roboto', sans-serif;
-  font-size: 20pt;
+  font-size: 1.7rem;
   font-weight: 200;
   letter-spacing: 0;
-  margin: 15px 0 30px;
+  margin: .5em 0 .5em;
   text-transform: uppercase;
+  text-align: center;
   line-height: 1.1;
 }
 
