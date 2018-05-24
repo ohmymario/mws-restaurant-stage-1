@@ -448,6 +448,7 @@ body.inside > header > nav {
   color: #f58500;
   font-size: 2rem;
   font-weight: 300;
+  text-align: center;
   /* letter-spacing: -1px; */
   /* padding-bottom: 1pt; */
 }
@@ -546,16 +547,9 @@ table#restaurant-hours tr:hover {
 /* #region Mediaqueries */
 
 
-/* MIGHT REMOVE AS WORKING MOBILE FIRST */
-@media screen and (max-width: 640px) {
-  body {
-    /* background-color: yellow; */
-  }
-} 
-
 @media screen and (min-width: 768px) and (max-width: 960px) {
-  body {
-    width: 96vw;
+  body, .inside header {
+    width: 97vw;
     margin: 0 auto;
   }
   body, td, th, p, ul, li {
@@ -583,11 +577,33 @@ table#restaurant-hours tr:hover {
   .filter-options select:last-child {
     margin-top: 8px;
   }
+
+  #restaurant-img {
+    align-self: center;
+    width: 95%;
+  }
+  #restaurant-cuisine {
+    width: 95%;
+    align-self: center;
+}
+
+  #restaurant-address {
+    padding-left: 2em;
+  }
+  table#restaurant-hours {
+    width: 90%;
+  }
+
+  #reviews-container {
+    padding-bottom: 5em;
+    width: 90%;
+    margin: 0 auto;
+}
+
 } 
 
 @media screen and (min-width: 961px) and (max-width: 1280px) {
-  body {
-    /* background-color: red; */
+  body , .inside header {
     width: 90vw;
     margin: 0 auto;
   }
@@ -608,6 +624,39 @@ table#restaurant-hours tr:hover {
   .filter-options select:last-child {
     margin-top: 8px;
   }
+
+  #restaurant-img {
+    align-self: center;
+    width: 90%;
+  }
+  #restaurant-cuisine {
+    width: 90%;
+    align-self: center;
+}
+
+#restaurant-address {
+  padding-left: 2em;
+}
+table#restaurant-hours {
+  width: 80%;
+}
+
+.restaurant-view#maincontent {
+  flex-flow: row wrap;
+} 
+
+#restaurant-container, #reviews-container {
+  width: 50%;
+  margin-top: 1em;
+}
+
+#restaurant-container {
+  justify-content: flex-start;
+}
+
+#reviews-container {
+  padding-bottom: 5em;
+}
 
 } 
 
@@ -656,6 +705,44 @@ table#restaurant-hours tr:hover {
   .filter-options select:last-child {
     margin-top: 8px;
   }
+
+  #restaurant-img {
+    align-self: center;
+    width: 95%;
+  }
+
+  #restaurant-cuisine {
+    width: 95%;
+    align-self: center;
+  }
+
+  #restaurant-address {
+    padding-left: 2em;
+  }
+
+  table#restaurant-hours {
+    width: 90%;
+  }
+
+  .restaurant-view#maincontent {
+    flex-flow: row wrap;
+}
+
+  #restaurant-container, #reviews-container {
+    width: 50%;
+    margin-top: 1em;
+  }
+
+  #restaurant-container {
+    justify-content: flex-start;
+  }
+
+  #reviews-container {
+    padding-bottom: 5em;
+  }
+
+
+
 }
 
 @media screen and (min-width: 1440px) {
