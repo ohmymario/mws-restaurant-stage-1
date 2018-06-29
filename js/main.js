@@ -1,3 +1,6 @@
+/* eslint-disable */
+
+
 let restaurants,
   neighborhoods,
   cuisines
