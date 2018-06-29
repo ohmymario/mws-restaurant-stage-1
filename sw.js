@@ -1,6 +1,7 @@
-var cacheVersion = 'static-cache-v1';
+const cacheVersion = 'static-cache-v1';
 
-var urlsToCache = ['/',
+const urlsToCache = [
+  '/',
   'index.html',
   'restaurant.html',
   'css/styles.css',
@@ -21,39 +22,33 @@ var urlsToCache = ['/',
   'img/10.jpg',
 ];
 
-addEventListener('install', (event) => {
-  console.log('[serviceworker] installed');
+addEventListener('install', event => {
+  console.log('[Serviceworker] installed');
 
   event.waitUntil(
-    caches.open(cacheVersion).then((cache) => {
-      console.log('caching files')
+    caches.open(cacheVersion).then(cache => {
+      console.log('caching files');
       return cache.addAll(urlsToCache);
-    })
-  )
-})
-
-
-// activate event
-addEventListener('activate', function (event) {
-  event.waitUntil(
-    caches.keys().then(function (cacheNames) {
-      return Promise.all(
-        cacheNames.filter(function (cacheName) {
-          return cacheName.startsWith('static') &&
-            cacheName != cacheVersion;
-        }).map(function (cacheName) {
-          return caches.delete(cacheName);
-        })
-      );
     })
   );
 });
 
-// fetch event
-addEventListener('fetch', function (event) {
-  event.respondWith(
-    caches.match(event.request).then(function (response) {
-      return response || fetch(event.request);
-    })
+// Activate event
+addEventListener('activate', event => {
+  event.waitUntil(
+    caches
+      .keys()
+      .then(cacheNames =>
+        Promise.all(
+          cacheNames
+            .filter(cacheName => cacheName.startsWith('static') && cacheName != cacheVersion)
+            .map(cacheName => caches.delete(cacheName))
+        )
+      )
   );
+});
+
+// Fetch event
+addEventListener('fetch', event => {
+  event.respondWith(caches.match(event.request).then(response => response || fetch(event.request)));
 });
