@@ -1,10 +1,10 @@
 const gulp = require('gulp');
-const concat = require('gulp-concat');
-const autoprefixer = require('gulp-autoprefixer');
-const sourcemaps = require('gulp-sourcemaps');
 const babel = require('gulp-babel');
-
+const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
+const cleanCSS = require('gulp-clean-css');
+const sourcemaps = require('gulp-sourcemaps');
+const autoprefixer = require('gulp-autoprefixer');
 
 gulp.task('default', ['copy-html', 'copy-images', 'styles', 'scripts'], () => {
   // IMPORTANT CHANGE TO CLEAN CSS
@@ -49,13 +49,16 @@ gulp.task('scripts-dist', () => {
     .pipe(concat('bundle.js'))
     .pipe(uglify())
     .pipe(sourcemaps.write())
+    // Move development files to dist files
     .pipe(gulp.dest('dist/js'));
 });
 
 gulp.task('styles', () => {
   gulp
     .src('css/*.css')
-    // TODO add gulp-clean-css pipe
+    .pipe(sourcemaps.init())
+    .pipe(cleanCSS())
+    .pipe(sourcemaps.write())
     .pipe(
       autoprefixer({
         browsers: ['last 2 versions'],
