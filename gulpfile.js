@@ -1,6 +1,5 @@
 const gulp = require('gulp');
 const babel = require('gulp-babel');
-const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
 const imagemin = require('gulp-imagemin');
 const cleanCSS = require('gulp-clean-css');
@@ -19,7 +18,7 @@ gulp.task('default', ['copy-html', 'copy-images', 'styles', 'scripts'], () => {
 gulp.task('dist', ['copy-html', 'copy-images', 'styles', 'scripts-dist']);
 
 gulp.task('copy-html', () => {
-  gulp.src('./index.html').pipe(gulp.dest('./dist'));
+  gulp.src('./*.html').pipe(gulp.dest('./dist'));
 });
 
 gulp.task('copy-images', () => {
@@ -40,7 +39,7 @@ gulp.task('scripts', () => {
         presets: ['env'],
       })
     )
-    .pipe(concat('bundle.js'))
+    // .pipe(concat('bundle.js'))
     .pipe(sourcemaps.write())
     // Move development files to dist folder
     .pipe(gulp.dest('dist/js'));
@@ -52,10 +51,10 @@ gulp.task('scripts-dist', () => {
     .pipe(sourcemaps.init())
     .pipe(
       babel({
-        presets: ['env'],
+        presets: ['babel-preset-env'],
       })
     )
-    .pipe(concat('bundle.js'))
+    // .pipe(concat('bundle.js'))
     .pipe(uglify())
     .pipe(sourcemaps.write())
     // Move development files to dist folder
