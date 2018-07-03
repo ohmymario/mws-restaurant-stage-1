@@ -2,13 +2,14 @@ const gulp = require('gulp');
 const babel = require('gulp-babel');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
+const imagemin = require('gulp-imagemin');
 const cleanCSS = require('gulp-clean-css');
 const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
 
 gulp.task('default', ['copy-html', 'copy-images', 'styles', 'scripts'], () => {
-  // IMPORTANT CHANGE TO CLEAN CSS
   gulp.watch('css/*.css', ['styles']);
+  gulp.watch('js/*.js', ['scripts']);
 
   gulp.watch('/index.html', ['copy-html']);
 });
@@ -20,7 +21,11 @@ gulp.task('copy-html', () => {
 });
 
 gulp.task('copy-images', () => {
-  gulp.src('img/*').pipe(gulp.dest('dist/img'));
+  gulp
+    .src('img/*.jpg')
+    .pipe(imagemin([imagemin.jpegtran({ progressive: true })]))
+    // Move development files to dist folder
+    .pipe(gulp.dest('dist/img'));
 });
 
 gulp.task('scripts', () => {
@@ -34,6 +39,7 @@ gulp.task('scripts', () => {
     )
     .pipe(concat('bundle.js'))
     .pipe(sourcemaps.write())
+    // Move development files to dist folder
     .pipe(gulp.dest('dist/js'));
 });
 
@@ -49,7 +55,7 @@ gulp.task('scripts-dist', () => {
     .pipe(concat('bundle.js'))
     .pipe(uglify())
     .pipe(sourcemaps.write())
-    // Move development files to dist files
+    // Move development files to dist folder
     .pipe(gulp.dest('dist/js'));
 });
 
@@ -64,6 +70,6 @@ gulp.task('styles', () => {
         browsers: ['last 2 versions'],
       })
     )
-    // Move development files to dist files
+    // Move development files to dist folder
     .pipe(gulp.dest('dist/css'));
 });
