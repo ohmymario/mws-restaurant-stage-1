@@ -7,6 +7,8 @@ const cleanCSS = require('gulp-clean-css');
 const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
 
+const webp = require('gulp-webp');
+
 gulp.task('default', ['copy-html', 'copy-images', 'styles', 'scripts'], () => {
   gulp.watch('css/*.css', ['styles']);
   gulp.watch('js/*.js', ['scripts']);
@@ -23,7 +25,8 @@ gulp.task('copy-html', () => {
 gulp.task('copy-images', () => {
   gulp
     .src('img/*.jpg')
-    .pipe(imagemin([imagemin.jpegtran({ progressive: true })]))
+    // .pipe(imagemin([imagemin.jpegtran({ progressive: true })]))
+    .pipe(webp())
     // Move development files to dist folder
     .pipe(gulp.dest('dist/img'));
 });
