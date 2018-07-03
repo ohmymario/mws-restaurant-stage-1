@@ -62,9 +62,9 @@ gulp.task('scripts-dist', () => {
 gulp.task('styles', () => {
   gulp
     .src('css/*.css')
-    .pipe(sourcemaps.init())
+    // .pipe(sourcemaps.init())
     .pipe(cleanCSS())
-    .pipe(sourcemaps.write())
+    // .pipe(sourcemaps.write())
     .pipe(
       autoprefixer({
         browsers: ['last 2 versions'],
