@@ -12,7 +12,7 @@ gulp.task('default', ['copy-html', 'copy-images', 'styles', 'scripts'], () => {
   gulp.watch('css/*.css', ['styles']);
   gulp.watch('js/*.js', ['scripts']);
 
-  gulp.watch('/index.html', ['copy-html']);
+  gulp.watch('/*.html', ['copy-html']);
 });
 
 gulp.task('dist', ['copy-html', 'copy-images', 'styles', 'scripts-dist']);
@@ -24,8 +24,8 @@ gulp.task('copy-html', () => {
 gulp.task('copy-images', () => {
   gulp
     .src('img/*.jpg')
-    // .pipe(imagemin([imagemin.jpegtran({ progressive: true })]))
-    .pipe(webp())
+    .pipe(imagemin([imagemin.jpegtran({ progressive: true })]))
+    // .pipe(webp())
     // Move development files to dist folder
     .pipe(gulp.dest('dist/img'));
 });
