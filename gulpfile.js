@@ -23,7 +23,7 @@ gulp.task('copy-html', () => {
 
 gulp.task('copy-images', () => {
   gulp
-    .src('img/*.jpg')
+    .src('img/**/*')
     .pipe(imagemin([imagemin.jpegtran({ progressive: true })]))
     // .pipe(webp())
     // Move development files to dist folder
