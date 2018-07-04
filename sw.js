@@ -1,25 +1,16 @@
-const cacheVersion = 'static-cache-v1';
+const cacheVersion = 'static-cache-v2';
 
 const urlsToCache = [
   '/',
-  'index.html',
-  'restaurant.html',
-  'css/styles.css',
-  'js/dbhelper.js',
-  'js/main.js',
-  'js/restaurant_info.js',
-  'data/restaurants.json',
+  'dist/index.html',
+  'dist/restaurant.html',
+  'dist/css/styles.css',
+  'dist/js/dbhelper.js',
+  'dist/js/main.js',
+  'dist/js/restaurant_info.js',
+  'http://localhost:1337/restaurants',
+  // 'data/restaurants.json',
   'https://fonts.googleapis.com/css?family=Roboto:400,700',
-  'img/1.jpg',
-  'img/2.jpg',
-  'img/3.jpg',
-  'img/4.jpg',
-  'img/5.jpg',
-  'img/6.jpg',
-  'img/7.jpg',
-  'img/8.jpg',
-  'img/9.jpg',
-  'img/10.jpg',
 ];
 
 addEventListener('install', event => {
