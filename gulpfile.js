@@ -5,14 +5,23 @@ const imagemin = require('gulp-imagemin');
 const cleanCSS = require('gulp-clean-css');
 const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
+const imageminMozjpeg = require('imagemin-mozjpeg');
+
+const browserSync = require('browser-sync').create();
 
 const webp = require('gulp-webp');
 
 gulp.task('default', ['copy-html', 'optimize-img', 'styles', 'scripts'], () => {
   gulp.watch('src/css/*.css', ['styles']);
   gulp.watch('src/js/*.js', ['scripts']);
-
   gulp.watch('src/*.html', ['copy-html']);
+
+  // reload when [copy-html runs]
+  gulp.watch('./dist/index.html').on('change', browserSync.reload);
+
+  browserSync.init({
+    server: './dist',
+  });
 });
 
 gulp.task('dist', [
@@ -28,7 +37,14 @@ gulp.task('dist', [
 gulp.task('optimize-img', () => {
   gulp
     .src('src/img/**/*')
-    .pipe(imagemin([imagemin.jpegtran({ progressive: true })]))
+    // .pipe(imagemin([imagemin.jpegtran({ progressive: true })]))
+    .pipe(
+      imagemin([
+        imageminMozjpeg({
+          quality: 75,
+        }),
+      ])
+    )
     // .pipe(webp())
     // Move development files to dist folder
     .pipe(gulp.dest('dist/img'));
