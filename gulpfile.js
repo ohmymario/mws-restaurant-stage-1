@@ -8,31 +8,36 @@ const autoprefixer = require('gulp-autoprefixer');
 
 const webp = require('gulp-webp');
 
-gulp.task('default', ['copy-html', 'copy-images', 'styles', 'scripts'], () => {
-  gulp.watch('css/*.css', ['styles']);
-  gulp.watch('js/*.js', ['scripts']);
+gulp.task('default', ['copy-html', 'optimize-img', 'styles', 'scripts'], () => {
+  gulp.watch('src/css/*.css', ['styles']);
+  gulp.watch('src/js/*.js', ['scripts']);
 
-  gulp.watch('/*.html', ['copy-html']);
+  gulp.watch('src/*.html', ['copy-html']);
 });
 
-gulp.task('dist', ['copy-html', 'copy-images', 'styles', 'scripts-dist']);
+gulp.task('dist', [
+  'copy-html',
+  'copy-sw',
+  'copy-manifest',
+  'styles',
+  'scripts-dist',
+  'optimize-img',
+]);
 
-gulp.task('copy-html', () => {
-  gulp.src('./*.html').pipe(gulp.dest('./dist'));
-});
-
-gulp.task('copy-images', () => {
+// Images
+gulp.task('optimize-img', () => {
   gulp
-    .src('img/**/*')
+    .src('src/img/**/*')
     .pipe(imagemin([imagemin.jpegtran({ progressive: true })]))
     // .pipe(webp())
     // Move development files to dist folder
     .pipe(gulp.dest('dist/img'));
 });
 
+// Javscript
 gulp.task('scripts', () => {
   gulp
-    .src('js/*.js')
+    .src('src/js/*.js')
     .pipe(sourcemaps.init())
     .pipe(
       babel({
@@ -47,7 +52,7 @@ gulp.task('scripts', () => {
 
 gulp.task('scripts-dist', () => {
   gulp
-    .src('js/*.js')
+    .src('src/js/*.js')
     .pipe(sourcemaps.init())
     .pipe(
       babel({
@@ -61,9 +66,10 @@ gulp.task('scripts-dist', () => {
     .pipe(gulp.dest('dist/js'));
 });
 
+// CSS
 gulp.task('styles', () => {
   gulp
-    .src('css/*.css')
+    .src('src/css/*.css')
     // .pipe(sourcemaps.init())
     .pipe(cleanCSS())
     // .pipe(sourcemaps.write())
@@ -74,4 +80,17 @@ gulp.task('styles', () => {
     )
     // Move development files to dist folder
     .pipe(gulp.dest('dist/css'));
+});
+
+// Copy Files
+gulp.task('copy-html', () => {
+  gulp.src('src/*.html').pipe(gulp.dest('./dist'));
+});
+
+gulp.task('copy-sw', () => {
+  gulp.src('src/sw.js').pipe(gulp.dest('./dist'));
+});
+
+gulp.task('copy-manifest', () => {
+  gulp.src('src/manifest.json').pipe(gulp.dest('./dist'));
 });
