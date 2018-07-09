@@ -663,7 +663,7 @@ table#restaurant-hours {
 @media screen and (min-width: 1281px) {
   body {
     /* background-color: blue; */
-    width: 68vw;
+    width: 81vw;
     margin: 0 auto;
   }
   #map {
