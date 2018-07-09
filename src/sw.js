@@ -1,13 +1,14 @@
 const cacheVersion = 'static-cache-v2';
+const contentImgsCache = 'static-content-imgs';
 
 const urlsToCache = [
   '/',
-  'dist/index.html',
-  'dist/restaurant.html',
-  'dist/css/styles.css',
-  'dist/js/dbhelper.js',
-  'dist/js/main.js',
-  'dist/js/restaurant_info.js',
+  'index.html',
+  'restaurant.html',
+  'css/styles.css',
+  'js/dbhelper.js',
+  'js/main.js',
+  'js/restaurant_info.js',
   'http://localhost:1337/restaurants',
   // 'data/restaurants.json',
   'https://fonts.googleapis.com/css?family=Roboto:400,700',
