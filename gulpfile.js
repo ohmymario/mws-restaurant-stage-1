@@ -11,18 +11,22 @@ const browserSync = require('browser-sync').create();
 
 const webp = require('gulp-webp');
 
-gulp.task('default', ['copy-html', 'optimize-img', 'styles', 'scripts'], () => {
-  gulp.watch('src/css/*.css', ['styles']);
-  gulp.watch('src/js/*.js', ['scripts']);
-  gulp.watch('src/*.html', ['copy-html']);
+gulp.task(
+  'default',
+  ['copy-html', 'optimize-img', 'copy-sw', 'copy-manifest', 'styles', 'scripts-dist'],
+  () => {
+    gulp.watch('src/css/*.css', ['styles']);
+    gulp.watch('src/js/*.js', ['scripts-dist']);
+    gulp.watch('src/*.html', ['copy-html']);
 
-  // reload when [copy-html runs]
-  gulp.watch('./dist/index.html').on('change', browserSync.reload);
+    // reload when [copy-html runs]
+    gulp.watch('./dist/index.html').on('change', browserSync.reload);
 
-  browserSync.init({
-    server: './dist',
-  });
-});
+    browserSync.init({
+      server: './dist',
+    });
+  }
+);
 
 gulp.task('dist', [
   'copy-html',
@@ -57,7 +61,7 @@ gulp.task('scripts', () => {
     .pipe(sourcemaps.init())
     .pipe(
       babel({
-        presets: ['env'],
+        presets: ['babel-preset-env'],
       })
     )
     // .pipe(concat('bundle.js'))
