@@ -13,7 +13,7 @@ if('serviceWorker' in navigator) {
   .then(() => {
     console.log('Registration Success');
   }).catch((error) => {
-    console.log('error')
+    console.log('Error')
   })
 }
 
