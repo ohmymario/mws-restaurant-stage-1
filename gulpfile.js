@@ -1,11 +1,15 @@
 const gulp = require('gulp');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
+const browserify = require('browserify');
 const imagemin = require('gulp-imagemin');
 const cleanCSS = require('gulp-clean-css');
+const source = require('vinyl-source-stream');
 const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
 const imageminMozjpeg = require('imagemin-mozjpeg');
+
+const babelify = require('babelify');
 
 const browserSync = require('browser-sync').create();
 
@@ -13,7 +17,7 @@ const webp = require('gulp-webp');
 
 gulp.task(
   'default',
-  ['copy-html', 'optimize-img', 'copy-sw', 'copy-manifest', 'styles', 'scripts-dist'],
+  ['copy-html', 'optimize-img', 'copy-manifest', 'sw', 'styles', 'scripts-dist'],
   () => {
     gulp.watch('src/css/*.css', ['styles']);
     gulp.watch('src/js/*.js', ['scripts-dist']);
@@ -108,9 +112,15 @@ gulp.task('copy-html', () => {
   gulp.src('src/*.html').pipe(gulp.dest('./dist'));
 });
 
-gulp.task('copy-sw', () => {
-  gulp.src('src/sw.js').pipe(gulp.dest('./dist'));
-});
+gulp.task('sw', () =>
+  browserify('src/sw.js')
+    .transform('babelify', { presets: ['env'] })
+
+    // NEED HARSHER PRESET
+    .bundle()
+    .pipe(source('sw.js'))
+    .pipe(gulp.dest('./dist'))
+);
 
 gulp.task('copy-manifest', () => {
   gulp.src('src/manifest.json').pipe(gulp.dest('./dist'));

@@ -19,6 +19,7 @@
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
+    "babelify": "^8.0.0",
     "browser-sync": "^2.24.5",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^5.0.0",
@@ -28,9 +29,11 @@
     "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify": "^3.0.0",
     "gulp-webp": "^3.0.0",
-    "imagemin-mozjpeg": "^7.0.0"
+    "imagemin-mozjpeg": "^7.0.0",
+    "vinyl-source-stream": "^2.0.0"
   },
   "dependencies": {
+    "browserify": "^16.2.2",
     "idb": "^2.1.3"
   }
 }
