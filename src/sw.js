@@ -55,7 +55,7 @@ addEventListener('activate', event => {
 // Fetch Event
 addEventListener('fetch', event => {
   // let ID;
-  const requestUrl = new URL(event.request.url);
+  let requestUrl = new URL(event.request.url);
 
   if (requestUrl.port === '1337') {
     // https://stackoverflow.com/questions/3840600/javascript-regular-expression-remove-first-and-last-slash
@@ -77,9 +77,7 @@ addEventListener('fetch', event => {
   }
 
   if (requestUrl.pathname.includes('restaurant.html')) {
-    // Grab ID if from restaurant.html
-    // https://stackoverflow.com/questions/10003683/javascript-get-number-from-string
-    // ID = parseInt(requestUrl.search.replace(/[^0-9]/g, ''));
+    requestUrl = new Response(`restaurant.html`);
   }
 
   if (requestUrl.pathname.startsWith('/img/')) {
