@@ -2,7 +2,7 @@ import idb from 'idb';
 
 const dbPromise = idb.open('mws-restaurants', 1, upgradeDb => {
   // switch (upgradeDB.oldVersion) {
-  //   case 0:
+  // case 0:
   upgradeDb.createObjectStore('restaurants', { keyPath: 'id' });
   // }
 });
@@ -54,19 +54,32 @@ addEventListener('activate', event => {
 
 // Fetch Event
 addEventListener('fetch', event => {
-  let ID;
+  // let ID;
   const requestUrl = new URL(event.request.url);
+
+  if (requestUrl.port === '1337') {
+    // https://stackoverflow.com/questions/3840600/javascript-regular-expression-remove-first-and-last-slash
+    const cleanRes = requestUrl.pathname.replace(/^\/|\/$/g, '');
+    const NonCleanRes = requestUrl.pathname;
+    const id = cleanRes === 'restaurants' ? '1' : cleanRes;
+    console.log(`[cleanRes] ${cleanRes}`);
+    console.log(`[NONparts] ${NonCleanRes}`);
+
+    console.log(`[ID] ${id}`);
+
+    console.log(`[OG URL] ${event.request.referrer}`);
+    console.log(`[PORT] ${requestUrl.port}`);
+    console.log(`[URL] ${requestUrl}`);
+
+    serveRestaurantJSON(event, id);
+    console.log(`[FINISH] serveRestauranJSON`);
+    return;
+  }
 
   if (requestUrl.pathname.includes('restaurant.html')) {
     // Grab ID if from restaurant.html
     // https://stackoverflow.com/questions/10003683/javascript-get-number-from-string
-    ID = parseInt(requestUrl.search.replace(/[^0-9]/g, ''));
-  }
-
-  if (requestUrl.port === '1337') {
-    console.log(`ABOUT TO DO SERVERESJSON`);
-    serveRestaurantJSON(event, ID);
-    return;
+    // ID = parseInt(requestUrl.search.replace(/[^0-9]/g, ''));
   }
 
   if (requestUrl.pathname.startsWith('/img/')) {
@@ -92,18 +105,18 @@ function servePhoto(request) {
   );
 }
 
-function serveRestaurantJSON(event, ID) {
-  console.log(event, ID);
+function serveRestaurantJSON(event, id) {
+  console.log(`[Before] Event, ID `);
+  console.log(`[Event] ${event}`);
+  console.log(`[ID] ${id}`);
   event.respondWith(
     dbPromise
-      .then(db => {
-        if (!db) return;
-
-        return db
+      .then(db =>
+        db
           .transaction('restaurants')
           .objectStore('restaurants')
-          .get(ID);
-      })
+          .get(id)
+      )
       .then(
         data =>
           (data && data.data) ||
@@ -111,11 +124,17 @@ function serveRestaurantJSON(event, ID) {
             .then(res => res.json())
             .then(json =>
               dbPromise.then(db => {
-                const tx = db.transaction('restaurants', 'readwrite');
-                tx.objectStore('restaurants').put({ ID, data: json });
+                const tx = db
+                  .transaction('restaurants', 'readwrite')
+                  .objectStore('restaurants')
+                  .put({ id, data: json });
                 return json;
               })
             )
       )
+      .then(res => {
+        const stringJSON = new Response(JSON.stringify(res));
+        return stringJSON;
+      })
   );
 }
