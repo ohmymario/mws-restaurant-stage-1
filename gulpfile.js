@@ -21,7 +21,7 @@ gulp.task(
   () => {
     gulp.watch('src/css/*.css', ['styles']);
     gulp.watch('src/js/*.js', ['scripts-dist']);
-    gulp.watch('src/*.js', ['copy-sw']);
+    gulp.watch('src/*.js', ['sw']);
     gulp.watch('src/*.html', ['copy-html']);
 
     // reload when [copy-html runs]
