@@ -9,6 +9,8 @@ const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
 const imageminMozjpeg = require('imagemin-mozjpeg');
 
+const compression = require('compression');
+
 const babelify = require('babelify');
 
 const browserSync = require('browser-sync').create();
@@ -29,6 +31,7 @@ gulp.task(
 
     browserSync.init({
       server: './dist',
+      middleware: [compression()],
     });
   }
 );
