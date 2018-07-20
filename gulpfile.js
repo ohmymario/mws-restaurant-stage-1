@@ -1,6 +1,7 @@
 const gulp = require('gulp');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
+const htmlmin = require('gulp-htmlmin');
 const browserify = require('browserify');
 const imagemin = require('gulp-imagemin');
 const cleanCSS = require('gulp-clean-css');
@@ -19,12 +20,12 @@ const webp = require('gulp-webp');
 
 gulp.task(
   'default',
-  ['copy-html', 'optimize-img', 'copy-manifest', 'sw', 'styles', 'scripts-dist'],
+  ['html', 'optimize-img', 'placeholder', 'copy-manifest', 'sw', 'styles', 'scripts-dist'],
   () => {
     gulp.watch('src/css/*.css', ['styles']);
     gulp.watch('src/js/*.js', ['scripts-dist']);
     gulp.watch('src/*.js', ['sw']);
-    gulp.watch('src/*.html', ['copy-html']);
+    gulp.watch('src/*.html', ['html']);
 
     // reload when [copy-html runs]
     gulp.watch('./dist/index.html').on('change', browserSync.reload);
@@ -36,14 +37,7 @@ gulp.task(
   }
 );
 
-gulp.task('dist', [
-  'copy-html',
-  'copy-sw',
-  'copy-manifest',
-  'styles',
-  'scripts-dist',
-  'optimize-img',
-]);
+gulp.task('dist', ['html', 'sw', 'copy-manifest', 'styles', 'scripts-dist', 'optimize-img']);
 
 // Images
 gulp.task('optimize-img', () => {
@@ -60,6 +54,20 @@ gulp.task('optimize-img', () => {
     // .pipe(webp())
     // Move development files to dist folder
     .pipe(gulp.dest('dist/img'));
+});
+
+// Placeholder
+gulp.task('placeholder', () => {
+  gulp
+    .src('src/img/**/*')
+    .pipe(
+      imagemin([
+        imageminMozjpeg({
+          quality: 5,
+        }),
+      ])
+    )
+    .pipe(gulp.dest('dist/img/placeholder'));
 });
 
 // Javscript
@@ -110,11 +118,15 @@ gulp.task('styles', () => {
     .pipe(gulp.dest('dist/css'));
 });
 
-// Copy Files
-gulp.task('copy-html', () => {
-  gulp.src('src/*.html').pipe(gulp.dest('./dist'));
+// Minify HTML
+gulp.task('html', () => {
+  gulp
+    .src('src/*.html')
+    .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
+    .pipe(gulp.dest('./dist'));
 });
 
+// Add idb to serviceworker
 gulp.task('sw', () =>
   browserify('src/sw.js')
     .transform('babelify', { presets: ['env'] })
