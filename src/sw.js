@@ -54,35 +54,26 @@ addEventListener('activate', event => {
 
 // Fetch Event
 addEventListener('fetch', event => {
-  // let ID;
   let requestUrl = new URL(event.request.url);
 
   if (requestUrl.port === '1337') {
     // https://stackoverflow.com/questions/3840600/javascript-regular-expression-remove-first-and-last-slash
     const cleanRes = requestUrl.pathname.replace(/^\/|\/$/g, '');
-    const NonCleanRes = requestUrl.pathname;
     const id = cleanRes === 'restaurants' ? '1' : cleanRes;
-    console.log(`[cleanRes] ${cleanRes}`);
-    console.log(`[NONparts] ${NonCleanRes}`);
-
-    console.log(`[ID] ${id}`);
-
-    console.log(`[OG URL] ${event.request.referrer}`);
-    console.log(`[PORT] ${requestUrl.port}`);
-    console.log(`[URL] ${requestUrl}`);
-
     serveRestaurantJSON(event, id);
-    console.log(`[FINISH] serveRestauranJSON`);
     return;
-  }
-
-  if (requestUrl.pathname.includes('restaurant.html')) {
-    requestUrl = new Response(`restaurant.html`);
   }
 
   if (requestUrl.pathname.startsWith('/img/')) {
+    console.log(requestUrl.pathname);
     event.respondWith(servePhoto(event.request));
     return;
+  }
+
+  // Serve default html when dynamic restaurant.html requested
+  if (requestUrl.pathname.includes('restaurant.html')) {
+    requestUrl = new Request(`restaurant.html`);
+    console.log(`[requestUrl] ${requestUrl}`);
   }
 
   event.respondWith(caches.match(event.request).then(response => response || fetch(event.request)));
@@ -104,9 +95,6 @@ function servePhoto(request) {
 }
 
 function serveRestaurantJSON(event, id) {
-  console.log(`[Before] Event, ID `);
-  console.log(`[Event] ${event}`);
-  console.log(`[ID] ${id}`);
   event.respondWith(
     dbPromise
       .then(db =>
