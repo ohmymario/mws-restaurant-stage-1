@@ -59,7 +59,7 @@ const fillRestaurantHTML = (restaurant = self.restaurant) => {
   address.innerHTML = restaurant.address;
 
   const image = document.getElementById('restaurant-img');
-  image.className = 'restaurant-img lazyload'
+  image.className = 'blur-up restaurant-img lazyload';
   image.src = DBHelper.placeImageUrlForRestaurant(restaurant);
   image.setAttribute('data-src', DBHelper.imageUrlForRestaurant(restaurant));
   image.setAttribute('alt', `Image of ${restaurant.name}`);
