@@ -12,10 +12,9 @@ const imageminMozjpeg = require('imagemin-mozjpeg');
 
 const compression = require('compression');
 
-const babelify = require('babelify');
-
 const browserSync = require('browser-sync').create();
 
+const babelify = require('babelify');
 const webp = require('gulp-webp');
 
 gulp.task(
@@ -26,8 +25,6 @@ gulp.task(
     gulp.watch('src/js/*.js', ['scripts-dist']);
     gulp.watch('src/*.js', ['sw']);
     gulp.watch('src/*.html', ['html']);
-
-    // reload when [copy-html runs]
     gulp.watch('./dist/index.html').on('change', browserSync.reload);
 
     browserSync.init({
@@ -38,6 +35,62 @@ gulp.task(
 );
 
 gulp.task('dist', ['html', 'sw', 'copy-manifest', 'styles', 'scripts-dist', 'optimize-img']);
+
+// Javscript
+gulp.task('scripts', () => {
+  gulp
+    .src('src/js/*.js')
+    .pipe(sourcemaps.init())
+    .pipe(
+      babel({
+        presets: ['babel-preset-env'],
+      })
+    )
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('dist/js'));
+});
+
+gulp.task('scripts-dist', () => {
+  gulp
+    .src('src/js/*.js')
+    .pipe(sourcemaps.init())
+    .pipe(
+      babel({
+        presets: ['babel-preset-env'],
+      })
+    )
+    // .pipe(concat('bundle.js'))
+    .pipe(uglify())
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('dist/js'));
+});
+
+// CSS
+gulp.task('styles', () => {
+  gulp
+    .src('src/css/*.css')
+    // .pipe(sourcemaps.init())
+    .pipe(cleanCSS())
+    // .pipe(sourcemaps.write())
+    .pipe(
+      autoprefixer({
+        browsers: ['last 2 versions'],
+      })
+    )
+    .pipe(gulp.dest('dist/css'));
+});
+
+// Minify HTML
+gulp.task('html', () => {
+  gulp
+    .src('src/*.html')
+    .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
+    .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('copy-manifest', () => {
+  gulp.src('src/manifest.json').pipe(gulp.dest('./dist'));
+});
 
 // Images
 gulp.task('optimize-img', () => {
@@ -52,7 +105,6 @@ gulp.task('optimize-img', () => {
       ])
     )
     // .pipe(webp())
-    // Move development files to dist folder
     .pipe(gulp.dest('dist/img'));
 });
 
@@ -70,73 +122,19 @@ gulp.task('placeholder', () => {
     .pipe(gulp.dest('dist/img/placeholder'));
 });
 
-// Javscript
-gulp.task('scripts', () => {
-  gulp
-    .src('src/js/*.js')
-    .pipe(sourcemaps.init())
-    .pipe(
-      babel({
-        presets: ['babel-preset-env'],
-      })
-    )
-    // .pipe(concat('bundle.js'))
-    .pipe(sourcemaps.write())
-    // Move development files to dist folder
-    .pipe(gulp.dest('dist/js'));
-});
-
-gulp.task('scripts-dist', () => {
-  gulp
-    .src('src/js/*.js')
-    .pipe(sourcemaps.init())
-    .pipe(
-      babel({
-        presets: ['babel-preset-env'],
-      })
-    )
-    // .pipe(concat('bundle.js'))
-    .pipe(uglify())
-    .pipe(sourcemaps.write())
-    // Move development files to dist folder
-    .pipe(gulp.dest('dist/js'));
-});
-
-// CSS
-gulp.task('styles', () => {
-  gulp
-    .src('src/css/*.css')
-    // .pipe(sourcemaps.init())
-    .pipe(cleanCSS())
-    // .pipe(sourcemaps.write())
-    .pipe(
-      autoprefixer({
-        browsers: ['last 2 versions'],
-      })
-    )
-    // Move development files to dist folder
-    .pipe(gulp.dest('dist/css'));
-});
-
-// Minify HTML
-gulp.task('html', () => {
-  gulp
-    .src('src/*.html')
-    .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
-    .pipe(gulp.dest('./dist'));
-});
-
-// Add idb to serviceworker
+// Add idb to Serviceworker
 gulp.task('sw', () =>
   browserify('src/sw.js')
     .transform('babelify', { presets: ['env'] })
-
-    // NEED HARSHER PRESET
     .bundle()
     .pipe(source('sw.js'))
     .pipe(gulp.dest('./dist'))
 );
 
-gulp.task('copy-manifest', () => {
-  gulp.src('src/manifest.json').pipe(gulp.dest('./dist'));
+// Responsive Images
+gulp.task('responsive-img', () => {
+  gulp
+    .src('src/img/**/*')
+
+    .pipe(gulp.dest('dist/img'));
 });
