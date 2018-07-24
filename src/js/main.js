@@ -154,8 +154,14 @@ const createRestaurantHTML = (restaurant) => {
 
   const image = document.createElement('img');
   image.className = 'restaurant-img lazyload blur-up';
-  image.src = DBHelper.placeImageUrlForRestaurant(restaurant);
-  image.setAttribute('data-src', DBHelper.imageUrlForRestaurant(restaurant));
+  
+  const imageUrl = `${DBHelper.imageUrlForRestaurant(restaurant)}`;
+  const srcsetImgURL = `${imageUrl}.jpg 800w, ${imageUrl}-400px.jpg 400w, ${imageUrl}-280px.jpg 280w`
+
+  image.src = `${imageUrl}-blur.jpg`;
+  image.setAttribute('data-src', `${imageUrl}.jpg`);
+  image.setAttribute('data-srcset', srcsetImgURL);
+  image.setAttribute('data-sizes', `auto`);
   image.setAttribute('alt', `Image of ${restaurant.name}`);
   li.append(image);
 

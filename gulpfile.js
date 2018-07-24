@@ -3,12 +3,12 @@ const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 const htmlmin = require('gulp-htmlmin');
 const browserify = require('browserify');
-const imagemin = require('gulp-imagemin');
 const cleanCSS = require('gulp-clean-css');
 const source = require('vinyl-source-stream');
 const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
-const imageminMozjpeg = require('imagemin-mozjpeg');
+
+const responsive = require('gulp-responsive');
 
 const compression = require('compression');
 
@@ -19,7 +19,7 @@ const webp = require('gulp-webp');
 
 gulp.task(
   'default',
-  ['html', 'optimize-img', 'placeholder', 'copy-manifest', 'sw', 'styles', 'scripts-dist'],
+  ['html', 'responsive-img', 'copy-manifest', 'sw', 'styles', 'scripts-dist'],
   () => {
     gulp.watch('src/css/*.css', ['styles']);
     gulp.watch('src/js/*.js', ['scripts-dist']);
@@ -34,7 +34,7 @@ gulp.task(
   }
 );
 
-gulp.task('dist', ['html', 'sw', 'copy-manifest', 'styles', 'scripts-dist', 'optimize-img']);
+gulp.task('dist', ['html', 'sw', 'copy-manifest', 'styles', 'scripts-dist', 'responsive-img']);
 
 // Javscript
 gulp.task('scripts', () => {
@@ -92,36 +92,6 @@ gulp.task('copy-manifest', () => {
   gulp.src('src/manifest.json').pipe(gulp.dest('./dist'));
 });
 
-// Images
-gulp.task('optimize-img', () => {
-  gulp
-    .src('src/img/**/*')
-    // .pipe(imagemin([imagemin.jpegtran({ progressive: true })]))
-    .pipe(
-      imagemin([
-        imageminMozjpeg({
-          quality: 75,
-        }),
-      ])
-    )
-    // .pipe(webp())
-    .pipe(gulp.dest('dist/img'));
-});
-
-// Placeholder
-gulp.task('placeholder', () => {
-  gulp
-    .src('src/img/**/*')
-    .pipe(
-      imagemin([
-        imageminMozjpeg({
-          quality: 5,
-        }),
-      ])
-    )
-    .pipe(gulp.dest('dist/img/placeholder'));
-});
-
 // Add idb to Serviceworker
 gulp.task('sw', () =>
   browserify('src/sw.js')
@@ -135,6 +105,40 @@ gulp.task('sw', () =>
 gulp.task('responsive-img', () => {
   gulp
     .src('src/img/**/*')
-
+    .pipe(
+      responsive({
+        // produce multiple images from one source
+        '*.jpg': [
+          {
+            quality: 75,
+          },
+          {
+            width: 280,
+            quality: 75,
+            rename: {
+              suffix: '-280px',
+            },
+          },
+          {
+            width: 400,
+            quality: 75,
+            rename: {
+              suffix: '-400px',
+            },
+          },
+          {
+            width: 500,
+            quality: 75,
+            blur: 30,
+            rename: {
+              suffix: '-blur',
+            },
+          },
+        ],
+        'icons/*.png': {
+          quality: 75,
+        },
+      })
+    )
     .pipe(gulp.dest('dist/img'));
 });
