@@ -29,9 +29,9 @@ a {
   text-decoration: none;
 }
 
-/* a:hover, a:focus {
+a:hover, a:focus {
   color: #3397db;
-} */
+}
 
 a img {
   border: none 0px var(--white);

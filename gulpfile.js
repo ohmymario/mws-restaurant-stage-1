@@ -7,7 +7,10 @@ const cleanCSS = require('gulp-clean-css');
 const source = require('vinyl-source-stream');
 const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
+
 const concatCss = require('gulp-concat-css');
+const purge = require('gulp-css-purge');
+const concat = require('gulp-concat');
 
 const responsive = require('gulp-responsive');
 
@@ -71,8 +74,25 @@ gulp.task('styles', () => {
   gulp
     .src('src/css/*.css')
     // .pipe(sourcemaps.init())
-    .pipe(concatCss('styles.css'))
-    .pipe(cleanCSS())
+    .pipe(concat('styles.css'))
+    .pipe(
+      purge({
+        trim: false,
+
+        trim_keep_non_standard_inline_comments: false,
+        trim_removed_rules_previous_comment: true,
+        trim_comments: true,
+        trim_whitespace: false,
+        trim_breaklines: false,
+        trim_last_semicolon: false,
+
+        shorten: false,
+        shorten_hexcolor: false,
+        shorten_hexcolor_extended_names: false,
+        verbose: true,
+      })
+    )
+    // .pipe(cleanCSS())
     // .pipe(sourcemaps.write())
     .pipe(
       autoprefixer({
