@@ -102,43 +102,24 @@ body.inside > header > nav {
 /* #region Restaurant Filtering Styles */
 
 .filter-options {
-  font-family: 'Roboto', sans-serif;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  width: 100%;
   background-color: rgb(0, 125, 187);
+  font-family: 'Roboto', sans-serif;
 }
 
 .filter-options h2 {
   color: var(--white);
-  font-size: 1rem;
-  font-weight: normal;
-  letter-spacing: 0.5px;
   line-height: 1;
-  margin: 5px 0 0 0;
-  flex-basis: 100%;
-  text-align: center;
+  letter-spacing: 0.5px;
+  font-weight: normal;
+  font-size: 1rem;
 }
 
 .filter-options select {
   background-color: var(--white);
-  font-size: 1rem;
-  height: 1.7em;
-  letter-spacing: 0;
-  margin: 8px;
-  padding: 0 10px;
-  flex-basis: 90%;
-  min-width: 90%;
   background: #f1f1f1 linear-gradient(hsla(0, 0%, 100%, .2), transparent);
   border: 1px solid rgba(0, 0, 0, 0.014);
   box-shadow: 0 .05em .7em rgba(0, 0, 0, 0.5);
-}
-
-.filter-options select:last-child {
-  margin-top: 2px;
+  font-size: 1rem;
 }
 
 .filter-options select:focus {

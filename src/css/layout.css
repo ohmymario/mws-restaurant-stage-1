@@ -1,0 +1,31 @@
+/* #region Restaurant Filtering Layout */
+
+.filter-options {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.filter-options h2 {
+  margin: 5px 0 0 0;
+  flex-basis: 100%;
+  text-align: center;
+}
+
+.filter-options select {
+  height: 1.7em;
+  letter-spacing: 0;
+  margin: 8px;
+  padding: 0 10px;
+  flex-basis: 90%;
+  min-width: 90%;
+}
+
+.filter-options select:last-child {
+  margin-top: 2px;
+}
+
+/* #endregion */
