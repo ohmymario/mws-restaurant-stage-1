@@ -7,6 +7,7 @@ const cleanCSS = require('gulp-clean-css');
 const source = require('vinyl-source-stream');
 const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
+const concatCss = require('gulp-concat-css');
 
 const responsive = require('gulp-responsive');
 
@@ -70,6 +71,7 @@ gulp.task('styles', () => {
   gulp
     .src('src/css/*.css')
     // .pipe(sourcemaps.init())
+    .pipe(concatCss('styles.css'))
     .pipe(cleanCSS())
     // .pipe(sourcemaps.write())
     .pipe(

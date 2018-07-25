@@ -11,123 +11,12 @@
 .blur-up {
   -webkit-filter: blur(5px);
   filter: blur(5px);
-  transition: filter 400ms, -webkit-filter 400ms;
+  transition: filter 400ms, -webkit-filter 500ms;
 }
 
 .blur-up.lazyloaded {
   -webkit-filter: blur(0);
   filter: blur(0);
-}
-
-/* #endregion */
-
-
-/* #region General Styles */
-
-body, td, th, p {
-  font-size: 1rem;
-  color: #333;
-  line-height: 1.5;
-}
-
-body {
-  background-color: #fdfdfd;
-  width: 100vw;
-  margin: 0;
-  position: relative;
-
-  /* for desktop versions */
-  box-shadow: 0 0 16px 3px #928d8d;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: center;
-}
-
-ul, li {
-  font-family: 'Roboto', sans-serif;
-  font-size: 1rem;
-  color: #333;
-}
-
-a {
-  color: orange;
-  text-decoration: none;
-}
-
-/* a:hover, a:focus {
-  color: #3397db;
-} */
-
-a img {
-  border: none 0px var(--white);
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Roboto', sans-serif;
-  margin: 0 0 20px;
-}
-
-article, aside, canvas, details, figcaption, figure, footer, hgroup, menu, nav, section {
-  display: block;
-}
-
-header {
-  width: 100%;
-  display: flex;
-  height: 80px;
-  align-items: center;
-  background-color: #252831;
-  box-shadow: 0 5px 4px -4px black;
-  z-index: 1;
-}
-
-#maincontent {
-  width: 100%;
-  background-color: #f3f3f3;
-  min-height: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-}
-
-#footer {
-  width: 100%;
-  display: flex;
-  height: 70px;
-  justify-content: center;
-  align-items: center;
-
-  background-color: #444;
-  color: #dbdbdb;
-  font-size: .6rem;
-  letter-spacing: 2px;
-  
-  text-align: center;
-  text-transform: uppercase;
-}
-
-/* From W3.org https://www.w3.org/WAI/tutorials/forms/labels/#using-aria-labelledby */
-.visuallyhidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-  font-size: .7em;
-}
-
-.visuallyhidden:focus {
-  position: initial;
-  border: initial;
-  clip: initial;
-  height: initial;
-  margin: initial;
-  overflow: initial;
-  padding: initial;
-  width: initial;
 }
 
 /* #endregion */
@@ -215,13 +104,11 @@ body.inside > header > nav {
 .filter-options {
   font-family: 'Roboto', sans-serif;
   display: flex;
-  /* flex-flow: column nowrap; */
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
   width: 100%;
-  /* height: 100px; */
   background-color: rgb(0, 125, 187);
 }
 
@@ -231,11 +118,9 @@ body.inside > header > nav {
   font-weight: normal;
   letter-spacing: 0.5px;
   line-height: 1;
-  margin: 5px 0 0 0 ;
-
+  margin: 5px 0 0 0;
   flex-basis: 100%;
   text-align: center;
-  
 }
 
 .filter-options select {
@@ -247,14 +132,12 @@ body.inside > header > nav {
   padding: 0 10px;
   flex-basis: 90%;
   min-width: 90%;
-
   background: #f1f1f1 linear-gradient(hsla(0, 0%, 100%, .2), transparent);
   border: 1px solid rgba(0, 0, 0, 0.014);
   box-shadow: 0 .05em .7em rgba(0, 0, 0, 0.5);
 }
 
 .filter-options select:last-child {
-  /* margin-right: 3em; */
   margin-top: 2px;
 }
 
@@ -271,7 +154,6 @@ body.inside > header > nav {
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
-
   background-color: #f3f3f3;
   list-style: outside none none;
   margin: 0 auto;
@@ -282,25 +164,21 @@ body.inside > header > nav {
 #restaurants-list li {
   background-color: var(--white);
   box-sizing: border-box;
-  box-shadow: 0 0 8px 1px #928d8d;
-
+  box-shadow: 0 0 8px 1px rgb(146, 141, 141);
   border-radius: 0px;
   border-top-left-radius: 20px;
-
   display: flex;
   flex-flow: column nowrap;
   font-family: 'Roboto', sans-serif;
   margin: .5em;
-  /* min-height: 400px; */
   padding: .5em;
-  /* max-width: 100%; */
   flex-basis: 100%;
   text-align: left;
 }
 
 #restaurants-list .restaurant-img {
   background-color: var(--eggshell);
-  box-shadow: 0 0 8px 1px #928d8d;
+  box-shadow: 0 0 8px 1px rgb(146, 141, 141);
   border-top-left-radius: 10px;
   display: block;
   margin: 0;
@@ -308,8 +186,6 @@ body.inside > header > nav {
 }
 
 #restaurants-list li h1 {
-  /* color: #f18200; */
-  /* font-family: Arial, sans-serif; */
   align-self: center;
   font-size: 1.5em;
   font-weight: 700;
@@ -329,25 +205,17 @@ body.inside > header > nav {
 }
 
 #restaurants-list li a {
-
-  /* Previous color  */
   background: rgb(255, 165, 0);
-
-  /* Dif color and better contrast ratio */
   background: rgb(0, 125, 187);
-
   border: 1px solid rgba(0, 0, 0, 0.014);
   box-shadow: 0 .05em .25em rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   color: var(--white);
-  
   font-size: 1.1em;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
   text-shadow: 0 -.05em 0.05em rgba(0, 0, 0, 0.5);
-  
-  /* display: inline-block; */
   margin: 5px 0 0;
   padding: .95rem 1.8rem .6rem;
 }
@@ -390,7 +258,6 @@ body.inside > header > nav {
   background: blue none repeat scroll 0 0;
   height: 30vh;
   width: 100%;
-  /* position: fixed; */
   right: 0;
   top: 80px;
   border-bottom: 1px solid var(--white);
@@ -445,9 +312,6 @@ body.inside > header > nav {
 }
 
 #restaurant-container, #reviews-container {
-  /* border-bottom: 1px solid #d9d9d9; */
-  /* border-top: 1px solid var(--white); */
-  /* padding: 140px 40px 30px; */
   width: 100%;
   display: flex;
   flex-flow: column nowrap;
@@ -465,8 +329,6 @@ body.inside > header > nav {
   font-size: 2rem;
   font-weight: 300;
   text-align: center;
-  /* letter-spacing: -1px; */
-  /* padding-bottom: 1pt; */
 }
 
 #reviews-list {
@@ -487,10 +349,8 @@ body.inside > header > nav {
   list-style-type: none;
   margin: 0 0 30px;
   overflow: hidden;
-  /* padding: 0 20px 20px; */
   position: relative;
   width: 90%;
-
   display: flex;
   flex-flow: row wrap;
 }
@@ -540,7 +400,7 @@ table#restaurant-hours {
 }
 
 table#restaurant-hours td, table#restaurant-hours th {
-  border: 1px solid #ddd;
+  border: 1px solid rgb(221, 221, 221);
 }
 
 table#restaurant-hours tr:nth-of-type(even) {
@@ -761,9 +621,6 @@ table#restaurant-hours {
   #reviews-container {
     padding-bottom: 5em;
   }
-
-
-
 }
 
 @media screen and (min-width: 1440px) {

@@ -1,0 +1,105 @@
+/* #region General Styles */
+
+body, td, th, p {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.5;
+}
+
+body {
+  background-color: rgb(253, 253, 253);
+  width: 100vw;
+  margin: 0;
+  position: relative;
+  box-shadow: 0 0 16px 3px rgb(146, 141, 141);
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
+ul, li {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  color: #333;
+}
+
+a {
+  color: orange;
+  text-decoration: none;
+}
+
+/* a:hover, a:focus {
+  color: #3397db;
+} */
+
+a img {
+  border: none 0px var(--white);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto', sans-serif;
+  margin: 0 0 20px;
+}
+
+article, aside, canvas, details, figcaption, figure, footer, hgroup, menu, nav, section {
+  display: block;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  height: 80px;
+  align-items: center;
+  background-color: #252831;
+  box-shadow: 0 5px 4px -4px black;
+  z-index: 1;
+}
+
+#maincontent {
+  width: 100%;
+  background-color: #f3f3f3;
+  min-height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#footer {
+  width: 100%;
+  display: flex;
+  height: 70px;
+  justify-content: center;
+  align-items: center;
+  background-color: #444;
+  color: #dbdbdb;
+  font-size: .6rem;
+  letter-spacing: 2px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* From W3.org https://www.w3.org/WAI/tutorials/forms/labels/#using-aria-labelledby */
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  font-size: .7em;
+}
+
+.visuallyhidden:focus {
+  position: initial;
+  border: initial;
+  clip: initial;
+  height: initial;
+  margin: initial;
+  overflow: initial;
+  padding: initial;
+  width: initial;
+}
+
+/* #endregion */
