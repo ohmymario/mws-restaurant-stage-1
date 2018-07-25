@@ -58,10 +58,15 @@ const fillRestaurantHTML = (restaurant = self.restaurant) => {
   const address = document.getElementById('restaurant-address');
   address.innerHTML = restaurant.address;
 
+  const imageUrl = `${DBHelper.imageUrlForRestaurant(restaurant)}`;
+  const srcsetImgURL = `${imageUrl}.jpg 800w, ${imageUrl}-400px.jpg 400w, ${imageUrl}-280px.jpg 280w`
+
   const image = document.getElementById('restaurant-img');
   image.className = 'blur-up restaurant-img lazyload';
-  image.src = DBHelper.placeImageUrlForRestaurant(restaurant);
-  image.setAttribute('data-src', DBHelper.imageUrlForRestaurant(restaurant));
+  image.src = `${imageUrl}-blur.jpg`;
+  image.setAttribute('data-src', `${imageUrl}.jpg`);
+  image.setAttribute('data-srcset', srcsetImgURL);
+  image.setAttribute('data-sizes', `auto`);
   image.setAttribute('alt', `Image of ${restaurant.name}`);
 
   const cuisine = document.getElementById('restaurant-cuisine');
