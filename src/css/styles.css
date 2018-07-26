@@ -170,41 +170,16 @@ nav h1 a:focus {
 /* #region Restaurant Details Styles */
 
 .inside header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 7.5em;
-  width: 100%;
-  overflow: hidden;
-  display: block;
-
   box-shadow: none;
-}
-
-.restaurant-view {
-  padding-top: 7.5em;
 }
 
 .inside #map-container {
   background: blue none repeat scroll 0 0;
-  height: 30vh;
-  width: 100%;
-  right: 0;
-  top: 80px;
   border-bottom: 1px solid var(--white);
 }
 
 .inside #map {
   background-color: var(--eggshell);
-  height: 100%;
-  width: 100%;
-}
-
-.inside #footer {
-  bottom: 0;
-  position: absolute;
-  width: 100%;
 }
 
 #restaurant-name {
@@ -213,7 +188,6 @@ nav h1 a:focus {
   font-size: 1.7rem;
   font-weight: 200;
   letter-spacing: 0;
-  margin: .5em 0 .5em;
   text-transform: uppercase;
   text-align: center;
   line-height: 1.1;
@@ -221,13 +195,10 @@ nav h1 a:focus {
 
 #restaurant-img {
   border-top: 1px solid var(--white);
-  width: 100%;
 }
 
 #restaurant-address {
-  padding-left: .5em;
   font-size: 1.1rem;
-  margin: 10px 0px 10px 0px;
 }
 
 #restaurant-cuisine {
@@ -236,24 +207,12 @@ nav h1 a:focus {
   font-size: 1.1rem;
   font-weight: 300;
   letter-spacing: 10px;
-  margin: 0 0 10px;
-  padding: 2px 0;
   text-align: center;
   text-transform: uppercase;
-  width: 100%;
 }
 
 #restaurant-container, #reviews-container {
-  width: 100%;
-  display: flex;
-  flex-flow: column nowrap;
   justify-content: center;
-}
-
-#reviews-container {
-  padding-bottom: 5em;
-  width: 97%;
-  margin: 0 auto;
 }
 
 #reviews-container h2 {
@@ -264,12 +223,7 @@ nav h1 a:focus {
 }
 
 #reviews-list {
-  margin: 0 auto;
-  padding: 0;
-  display: flex;
-  flex-flow: column nowrap;
   justify-content: center;
-  align-items: center;
 }
 
 #reviews-list li {
@@ -277,23 +231,13 @@ nav h1 a:focus {
   border: 2px solid #f3f3f3;
   border-top-left-radius: 20px;
   border-bottom-right-radius: 20px;
-  display: block;
   list-style-type: none;
-  margin: 0 0 30px;
   overflow: hidden;
-  position: relative;
-  width: 90%;
-  display: flex;
-  flex-flow: row wrap;
 }
 
 #reviews-list li p:nth-child(-n+2) {
   color: var(--white);
   font-size: 1.2rem;
-  flex-basis: 50%;
-  box-sizing: border-box;
-  padding: 15px;
-  margin: 0;
   background: #252831;
 }
 
@@ -308,17 +252,11 @@ nav h1 a:focus {
   color: var(--white);
   text-transform: uppercase;
   border-radius: 3px;
-  padding: 5px;
-  margin: 10px 20px 10px 20px;
 }
 
 #reviews-list li p:last-child {
   flex-basis: 100%;
   padding: 0 20px 20px;
-}
-
-#reviews-list li p {
-  margin: 0 0 10px;
 }
 
 /* #endregion */
