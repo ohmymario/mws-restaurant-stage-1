@@ -77,14 +77,14 @@ gulp.task('styles', () => {
     .pipe(concat('styles.css'))
     .pipe(
       purge({
-        trim: false,
+        trim: true,
 
-        trim_keep_non_standard_inline_comments: false,
-        trim_removed_rules_previous_comment: true,
-        trim_comments: true,
-        trim_whitespace: false,
-        trim_breaklines: false,
-        trim_last_semicolon: false,
+        // trim_keep_non_standard_inline_comments: false,
+        // trim_removed_rules_previous_comment: true,
+        // trim_comments: true,
+        // trim_whitespace: false,
+        // trim_breaklines: false,
+        // trim_last_semicolon: false,
 
         shorten: false,
         shorten_hexcolor: false,
@@ -93,7 +93,7 @@ gulp.task('styles', () => {
         verbose: true,
       })
     )
-    // .pipe(cleanCSS())
+    .pipe(cleanCSS())
     // .pipe(sourcemaps.write())
     .pipe(
       autoprefixer({
