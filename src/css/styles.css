@@ -263,12 +263,6 @@ nav h1 a:focus {
 
 /* #region Restaurant Hours Styles */
 
-table#restaurant-hours {
-  align-self: center;
-  border-collapse: collapse;
-  width: 97%;
-}
-
 table#restaurant-hours td, table#restaurant-hours th {
   border: 1px solid rgb(221, 221, 221);
 }
@@ -282,11 +276,6 @@ table#restaurant-hours tr:hover {
   background-color: rgb(180, 180, 180);
   color: var(--white);
 }
-
-#restaurant-hours td {
-  vertical-align: middle;
-}
-
 
 /* #endregion */
 

@@ -213,3 +213,17 @@ header > nav {
 }
 
 /* #endregion */
+
+/* #region Restaurant Hours Layout */
+
+table#restaurant-hours {
+  align-self: center;
+  border-collapse: collapse;
+  width: 97%;
+}
+
+#restaurant-hours td {
+  vertical-align: middle;
+}
+
+/* #endregion */
