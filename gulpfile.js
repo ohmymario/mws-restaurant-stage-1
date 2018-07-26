@@ -90,7 +90,7 @@ gulp.task('styles', () => {
         shorten_hexcolor: false,
         shorten_hexcolor_extended_names: false,
         shorten_zero: false,
-        verbose: true,
+        verbose: false,
       })
     )
     .pipe(cleanCSS())

@@ -65,7 +65,6 @@ addEventListener('fetch', event => {
   }
 
   if (requestUrl.pathname.startsWith('/img/')) {
-    console.log(requestUrl.pathname);
     event.respondWith(servePhoto(event.request));
     return;
   }
@@ -73,7 +72,6 @@ addEventListener('fetch', event => {
   // Serve default html when dynamic restaurant.html requested
   if (requestUrl.pathname.includes('restaurant.html')) {
     requestUrl = new Request(`restaurant.html`);
-    console.log(`[requestUrl] ${requestUrl}`);
   }
 
   event.respondWith(caches.match(event.request).then(response => response || fetch(event.request)));
