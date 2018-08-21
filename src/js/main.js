@@ -174,7 +174,8 @@ const createRestaurantHTML = (restaurant) => {
   li.append(neighborhood);
 
   const favorite = document.createElement('button');
-  favorite.className = 'favBtn'
+  favorite.className = 'favBtn';
+  favorite.id = `restaurant-${restaurant.id}`;
   favorite.innerHTML = `❤`;
   li.append(favorite);
 
