@@ -188,7 +188,7 @@ button.favBtn:focus{
   box-shadow: 0 0 1em 0px rgba(255, 115, 0, 0.842);
 }
 
-.favBtnSelected {
+button.favBtnSelected {
   color: rgb(255, 0, 0);
 }
 
