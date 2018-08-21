@@ -139,7 +139,7 @@ nav h1 a:focus {
   color: hsla(0, 0%, 0%, 0.61);
 }
 
-#restaurants-list li a {
+#restaurants-list li a, button {
   background: rgb(0, 125, 187);
   border: 1px solid rgba(0, 0, 0, 0.014);
   box-shadow: 0 .05em .25em rgba(0, 0, 0, 0.5);
@@ -163,6 +163,33 @@ nav h1 a:focus {
   background: rgba(54, 59, 61, 0.795);
   border-color: rgb(255, 115, 0);
   box-shadow: 0 0 1em 0px rgba(255, 115, 0, 0.842);
+}
+
+button.favBtn {
+  box-sizing: border-box;
+  color: var(--white);
+  background: rgb(0, 125, 187);
+  font-style: normal;
+  text-align: center;
+}
+
+button.favBtn:hover {
+  color: rgb(196, 103, 103);
+  text-shadow: 0 -.05em 0.05em rgba(0, 0, 0, 0.5);
+  background: rgba(0, 125, 187, 0.795);
+  border: 1px solid rgba(0, 0, 0, 0.164);
+  box-shadow: 0 .05em .25em rgba(0, 0, 0, 0.603);
+}
+
+button.favBtn:focus{
+  color: rgb(255, 0, 0);
+  background: rgba(2, 149, 223, 0.89);
+  border-color: rgb(255, 115, 0);
+  box-shadow: 0 0 1em 0px rgba(255, 115, 0, 0.842);
+}
+
+.favBtnSelected {
+  color: rgb(255, 0, 0);
 }
 
 /* #endregion */
@@ -325,7 +352,7 @@ table#restaurant-hours tr:hover {
   #restaurant-cuisine {
     width: 95%;
     align-self: center;
-}
+  }
 
   #restaurant-address {
     padding-left: 2em;

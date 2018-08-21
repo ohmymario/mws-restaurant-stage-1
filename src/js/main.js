@@ -173,6 +173,11 @@ const createRestaurantHTML = (restaurant) => {
   neighborhood.innerHTML = restaurant.neighborhood;
   li.append(neighborhood);
 
+  const favorite = document.createElement('button');
+  favorite.className = 'favBtn'
+  favorite.innerHTML = `❤`;
+  li.append(favorite);
+
   const address = document.createElement('p');
   address.innerHTML = restaurant.address;
   li.append(address);

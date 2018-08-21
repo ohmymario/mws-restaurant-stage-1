@@ -83,11 +83,11 @@ header > nav {
   text-align: left;
   display: grid;
   grid-template-areas: 
-  'resImage resImage'
-  'resH2 resH2'
-  'resCity resCity'
-  'resAddress resAddress'
-  'resButton resButton';
+  'resImage resImage resImage'
+  'resH2 resH2 resH2'
+  'resCity resCity resCity'
+  'resAddress resAddress resAddress'
+  'resButton resButton resFavorite';
   grid-gap: .2em;
 }
 
@@ -107,6 +107,11 @@ header > nav {
 #restaurants-list p {
   margin: 0;
   grid-area: resCity;
+}
+
+button.favBtn {
+  margin: 5px 0 0;
+  grid-area: resFavorite;
 }
 
 #restaurants-list p:last-of-type {
