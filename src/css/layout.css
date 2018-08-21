@@ -70,41 +70,55 @@ header > nav {
 /* #region Restaurant Listing Layout */ 
 
 #restaurants-list {
-  display: flex;
-  flex-flow: row wrap;
   margin: 0 auto;
   padding: 10px 5px 60px;
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
 #restaurants-list li {
   box-sizing: border-box;
-  display: flex;
-  flex-flow: column nowrap;
   margin: .5em;
   padding: .5em;
-  flex-basis: 100%;
   text-align: left;
+  display: grid;
+  grid-template-areas: 
+  'resImage resImage'
+  'resH2 resH2'
+  'resCity resCity'
+  'resAddress resAddress'
+  'resButton resButton';
+  grid-gap: .2em;
 }
 
 #restaurants-list .restaurant-img {
   display: block;
   margin: 0;
   width: 100%;
+  grid-area: resImage;
 }
 
-#restaurants-list li h1 {
-  align-self: center;
+#restaurants-list li h2 {
+  text-align: center;
   margin: .25em 0 .25em 0;
+  grid-area: resH2;
 }
 
 #restaurants-list p {
   margin: 0;
+  grid-area: resCity;
+}
+
+#restaurants-list p:last-of-type {
+  grid-area: resAddress;
 }
 
 #restaurants-list li a {
   margin: 5px 0 0;
   padding: .95rem 1.8rem .6rem;
+  grid-area: resButton;
 }
+
 
 /* #endregion */
 

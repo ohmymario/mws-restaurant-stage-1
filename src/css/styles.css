@@ -295,15 +295,15 @@ table#restaurant-hours tr:hover {
   body, td, th, p, ul, li {
     font-size: 1.2rem;
   }
-  #restaurants-list li {
-    flex-basis: calc((100% / 2 ) - 1em)
+
+  #restaurants-list {
+    grid-template-columns: repeat(3, 1fr);
   }
+
   #restaurants-list li h1{
     font-size: 1.2em;
   }
   #restaurants-list li a {
-    align-self: center;
-    width: 80%;
     font-size: .8em;
   }
   .filter-options h2 {
@@ -347,6 +347,11 @@ table#restaurant-hours tr:hover {
     width: 90vw;
     margin: 0 auto;
   }
+
+  #restaurants-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
   #restaurants-list li {
     flex-basis: calc((100% / 3 ) - 1em)
   } 
@@ -409,6 +414,11 @@ table#restaurant-hours {
   #map {
     height: 35vh;
   }
+
+  #restaurants-list {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
   #restaurants-list li {
     flex-basis: calc((100% / 5 ) - 1em)
   }
@@ -423,8 +433,6 @@ table#restaurant-hours {
     font-size: .714em;
   }
   #restaurants-list li a {
-    align-self: center;
-    width: 80%;
     font-size: .8em;
     padding: 0.25rem 0rem 0.2rem;
   }
