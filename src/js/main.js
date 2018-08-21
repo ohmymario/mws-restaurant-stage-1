@@ -174,10 +174,18 @@ const createRestaurantHTML = (restaurant) => {
   li.append(neighborhood);
 
   const favorite = document.createElement('button');
+  const isFav = restaurant.is_favorite;
   favorite.className = 'favBtn';
+
+  if(isFav) {
+    favorite.className = 'favBtn favBtnSelected';
+  }
   favorite.id = `restaurant-${restaurant.id}`;
   favorite.innerHTML = `❤`;
   li.append(favorite);
+  favorite.addEventListener('click', function() {
+    favResBtn(event, restaurant, isFav);
+  });
 
   const address = document.createElement('p');
   address.innerHTML = restaurant.address;
@@ -190,6 +198,20 @@ const createRestaurantHTML = (restaurant) => {
   li.append(more)
 
   return li
+}
+
+const favResBtn = (event, restaurant, isFav) => {
+  console.log('Hello');
+  console.log(event);
+  console.log(event.target);
+  const favorite = event.target;
+  // const favStatus = restaurant.is_favorite; 
+  if(!isFav) {
+    favorite.classList.add('favBtnSelected');
+  } else {
+    favorite.classList.remove('favBtnSelected');
+  }
+  
 }
 
 /**
