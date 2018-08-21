@@ -8,7 +8,6 @@ const source = require('vinyl-source-stream');
 const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
 
-const concatCss = require('gulp-concat-css');
 const purge = require('gulp-css-purge');
 const concat = require('gulp-concat');
 
