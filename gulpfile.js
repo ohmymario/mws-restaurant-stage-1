@@ -55,7 +55,9 @@ gulp.task('scripts', () => {
 
 gulp.task('scripts-dist', () => {
   gulp
-    .src('src/js/*.js')
+    .src(['src/js/*.js'])
+    // .src(['src/js/*.js', '!src/js/dbhelper.js'])
+    // https://stackoverflow.com/questions/23384239/excluding-files-directories-from-gulp-task
     .pipe(sourcemaps.init())
     .pipe(
       babel({
@@ -122,6 +124,15 @@ gulp.task('sw', () =>
     .pipe(source('sw.js'))
     .pipe(gulp.dest('./dist'))
 );
+
+// Add idb to DBHelper
+// gulp.task('dbhelper', () =>
+//   browserify('src/js/dbhelper.js')
+//     .transform('babelify', { presets: ['env'] })
+//     .bundle()
+//     .pipe(source('dbhelper.js'))
+//     .pipe(gulp.dest('dist/js'))
+// );
 
 // Responsive Images
 gulp.task('responsive-img', () => {

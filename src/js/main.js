@@ -184,7 +184,7 @@ const createRestaurantHTML = (restaurant) => {
   favorite.innerHTML = `❤`;
   li.append(favorite);
   favorite.addEventListener('click', function() {
-    favResBtn(event, restaurant, isFav);
+    favResBtn(event, restaurant.id, isFav);
   });
 
   const address = document.createElement('p');
@@ -200,18 +200,22 @@ const createRestaurantHTML = (restaurant) => {
   return li
 }
 
-const favResBtn = (event, restaurant, isFav) => {
-  console.log('Hello');
-  console.log(event);
+const favResBtn = (event, restaurantID, isFav = false) => {
   console.log(event.target);
+  console.log(restaurantID);
+  console.log(isFav);
+
   const favorite = event.target;
-  // const favStatus = restaurant.is_favorite; 
+
   if(!isFav) {
     favorite.classList.add('favBtnSelected');
+    isFav = !isFav;
+    // DBHelper.updateFavouriteStatus(restaurantID, isFav) 
   } else {
     favorite.classList.remove('favBtnSelected');
+    isFav = !isFav;
+    // DBHelper.updateFavouriteStatus(restaurantID, isFav)
   }
-  
 }
 
 /**
