@@ -1,10 +1,10 @@
 import idb from 'idb';
 
 const dbPromise = idb.open('mws-restaurants', 1, upgradeDb => {
-  // switch (upgradeDB.oldVersion) {
-  // case 0:
-  upgradeDb.createObjectStore('restaurants', { keyPath: 'id' });
-  // }
+  switch (upgradeDb.oldVersion) {
+    case 0:
+      upgradeDb.createObjectStore('restaurants', { keyPath: 'id' });
+  }
 });
 
 const cacheVersion = 'static-cache-v3';
