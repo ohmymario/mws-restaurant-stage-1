@@ -1,5 +1,6 @@
 /* eslint-disable */
 
+import idb from "idb";
 
 /**
  * Common database helper functions.
@@ -177,3 +178,5 @@ class DBHelper {
   }
 
 }
+
+window.DBHelper = DBHelper;

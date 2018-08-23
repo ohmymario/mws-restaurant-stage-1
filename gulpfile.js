@@ -22,7 +22,7 @@ const webp = require('gulp-webp');
 
 gulp.task(
   'default',
-  ['html', 'responsive-img', 'copy-manifest', 'sw', 'styles', 'scripts-dist'],
+  ['html', 'responsive-img', 'copy-manifest', 'sw', 'dbhelper', 'styles', 'scripts-dist'],
   () => {
     gulp.watch('src/css/*.css', ['styles']);
     gulp.watch('src/js/*.js', ['scripts-dist']);
@@ -55,8 +55,8 @@ gulp.task('scripts', () => {
 
 gulp.task('scripts-dist', () => {
   gulp
-    .src(['src/js/*.js'])
-    // .src(['src/js/*.js', '!src/js/dbhelper.js'])
+    // .src(['src/js/*.js'])
+    .src(['src/js/*.js', '!src/js/dbhelper.js'])
     // https://stackoverflow.com/questions/23384239/excluding-files-directories-from-gulp-task
     .pipe(sourcemaps.init())
     .pipe(
@@ -126,13 +126,13 @@ gulp.task('sw', () =>
 );
 
 // Add idb to DBHelper
-// gulp.task('dbhelper', () =>
-//   browserify('src/js/dbhelper.js')
-//     .transform('babelify', { presets: ['env'] })
-//     .bundle()
-//     .pipe(source('dbhelper.js'))
-//     .pipe(gulp.dest('dist/js'))
-// );
+gulp.task('dbhelper', () =>
+  browserify('src/js/dbhelper.js', { standalone: 'Bundle' })
+    .transform('babelify', { presets: ['env'] })
+    .bundle()
+    .pipe(source('dbhelper.js'))
+    .pipe(gulp.dest('dist/js'))
+);
 
 // Responsive Images
 gulp.task('responsive-img', () => {
