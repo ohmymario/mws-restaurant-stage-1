@@ -176,10 +176,14 @@ const createRestaurantHTML = (restaurant) => {
   const favorite = document.createElement('button');
   favorite.className = 'favBtn';
 
-  console.log(`createRestaurantHTML ${restaurant.is_favorite}`);
+  // Change string values to boolean
+  if (restaurant.is_favorite === 'false' || undefined) {
+    restaurant.is_favorite = false;
+  } else if (restaurant.is_favorite === 'true') {
+    restaurant.is_favorite = true;
+  }
 
-  if(restaurant.is_favorite = true) {
-    console.log(`WHY AM I HERE ${restaurant.is_favorite}`);
+  if(restaurant.is_favorite) {
     favorite.className = 'favBtn favBtnSelected';
   }
 
@@ -205,33 +209,10 @@ const createRestaurantHTML = (restaurant) => {
 }
 
 const favResBtn = (event, restaurant) => {
-  const restaurantID = restaurant.id;
-  // let isFav = restaurant.is_favorite;
-
-  console.log(event.target);
-  console.log(restaurantID);
-  console.log(`Current Fav Status ${restaurant.is_favorite}`);
-
-  //Might have to not pass in [isFav] and as server everytime
-  //For correct status of the favorite 
-  
   const favorite = event.target;
 
-  // if(!isFav) {
-  //   console.log("ADDING");
-  //   favorite.classList.add('favBtnSelected');
-  //   isFav = true;
-  //   DBHelper.updateFavouriteStatus(restaurantID, isFav) 
-  // } else {
-  //   console.log("REMOVING");
-  //   favorite.classList.remove('favBtnSelected');
-  //   isFav = false;
-  //   DBHelper.updateFavouriteStatus(restaurantID, isFav)
-  // }
-
-
   const isFav = !restaurant.is_favorite;
-  DBHelper.updateFavouriteStatus(restaurantID, isFav);
+  DBHelper.updateFavouriteStatus(restaurant, isFav);
   favorite.classList.toggle('favBtnSelected');
 
 }
