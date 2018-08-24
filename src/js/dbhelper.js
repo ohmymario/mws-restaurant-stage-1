@@ -2,6 +2,13 @@
 
 import idb from "idb";
 
+const dbPromise = idb.open('mws-restaurants', 1, upgradeDb => {
+  switch (upgradeDb.oldVersion) {
+    case 0:
+      upgradeDb.createObjectStore('restaurants', { keyPath: 'id' });
+  }
+});
+
 /**
  * Common database helper functions.
  */
@@ -169,6 +176,23 @@ class DBHelper {
       animation: google.maps.Animation.DROP}
     );
     return marker;
+  }
+
+  static updateFavouriteStatus(restaurantID, isFav) {
+    console.log(`updateFavouriteStatus`);
+    console.log(`restaurantID ${restaurantID}`);
+    console.log(`isFav ${isFav}`);
+
+    fetch(`http://localhost:1337/restaurants/${restaurantID}/?is_favorite=${isFav}`, {
+      method: 'PUT',
+    })
+    // dbPromise.then(db => {
+    //   const tx = db.transaction('restaurants', 'readwrite').objectStore('restaurants');
+    //   tx.get(restaurantID).then(restaurant => {
+    //     restaurant.is_favorite = isFav;
+    //     tx.put(restaurant);
+    //   });
+    // });
   }
 
 }

@@ -182,7 +182,7 @@ button.favBtn:hover {
 }
 
 button.favBtn:focus{
-  color: rgb(255, 0, 0);
+  /* color: rgb(255, 0, 0); */
   background: rgba(2, 149, 223, 0.89);
   border-color: rgb(255, 115, 0);
   box-shadow: 0 0 1em 0px rgba(255, 115, 0, 0.842);
