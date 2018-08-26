@@ -1,12 +1,3 @@
-import idb from 'idb';
-
-const dbPromise = idb.open('mws-restaurants', 1, upgradeDb => {
-  switch (upgradeDb.oldVersion) {
-    case 0:
-      upgradeDb.createObjectStore('restaurants', { keyPath: 'id' });
-  }
-});
-
 const cacheVersion = 'static-cache-v3';
 const contentImgsCache = 'static-content-imgs';
 
@@ -56,20 +47,13 @@ addEventListener('activate', event => {
 addEventListener('fetch', event => {
   let requestUrl = new URL(event.request.url);
 
-  if (requestUrl.port === '1337') {
-    // https://stackoverflow.com/questions/3840600/javascript-regular-expression-remove-first-and-last-slash
-    const cleanRes = requestUrl.pathname.replace(/^\/|\/$/g, '');
-    const id = cleanRes === 'restaurants' ? '1' : cleanRes;
-    serveRestaurantJSON(event, id);
-    return;
-  }
-
+  // Serve cached photo if previously cached
   if (requestUrl.pathname.startsWith('/img/')) {
     event.respondWith(servePhoto(event.request));
     return;
   }
 
-  // Serve default html when dynamic restaurant.html requested
+  // Serve default restaurant.html when dynamic restaurant.html requested
   if (requestUrl.pathname.includes('restaurant.html')) {
     requestUrl = new Request(`restaurant.html`);
   }
@@ -89,36 +73,5 @@ function servePhoto(request) {
         return networkResponse;
       });
     })
-  );
-}
-
-function serveRestaurantJSON(event, id) {
-  event.respondWith(
-    dbPromise
-      .then(db =>
-        db
-          .transaction('restaurants')
-          .objectStore('restaurants')
-          .get(id)
-      )
-      .then(
-        data =>
-          (data && data.data) ||
-          fetch(event.request)
-            .then(res => res.json())
-            .then(json =>
-              dbPromise.then(db => {
-                const tx = db
-                  .transaction('restaurants', 'readwrite')
-                  .objectStore('restaurants')
-                  .put({ id, data: json });
-                return json;
-              })
-            )
-      )
-      .then(res => {
-        const stringJSON = new Response(JSON.stringify(res));
-        return stringJSON;
-      })
   );
 }
