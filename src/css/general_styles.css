@@ -60,8 +60,6 @@ header {
   width: 100%;
   background-color: #f3f3f3;
   min-height: 100%;
-  display: flex;
-  flex-flow: column nowrap;
 }
 
 #footer {
