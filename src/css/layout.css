@@ -142,6 +142,30 @@ button.favBtn {
 
 .restaurant-view {
   padding-top: 7.5em;
+  display: grid;
+  grid-template-areas: 
+  "map map"
+  "info info"
+  "review review"
+  "form form";
+  grid-gap: 1em;
+}
+
+#map-container {
+  grid-area: map;
+}
+
+#restaurant-container {
+  grid-area: info;
+}
+
+#reviews-container {
+  grid-area: review;
+  padding-bottom: 5em;
+}
+
+#review-form-container {
+  grid-area: form;
 }
 
 .inside #map-container {
@@ -155,12 +179,6 @@ button.favBtn {
   height: 100%;
   width: 100%;
 }
-
-/* .inside #footer {
-  bottom: 0;
-  position: absolute;
-  width: 100%;
-} */
 
 #restaurant-name {
   margin: .5em 0 .5em;
@@ -182,15 +200,10 @@ button.favBtn {
 }
 
 #restaurant-container, #reviews-container {
-  width: 100%;
+  width: 98%;
+  margin: 0 auto;
   display: flex;
   flex-flow: column nowrap;
-}
-
-#reviews-container {
-  padding-bottom: 5em;
-  width: 97%;
-  margin: 0 auto;
 }
 
 #reviews-list {
@@ -238,7 +251,7 @@ button.favBtn {
 table#restaurant-hours {
   align-self: center;
   border-collapse: collapse;
-  width: 97%;
+  width: 98%;
 }
 
 #restaurant-hours td {
@@ -246,3 +259,12 @@ table#restaurant-hours {
 }
 
 /* #endregion */
+
+
+
+
+
+
+section {
+  border: 1px solid red;
+}

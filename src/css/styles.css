@@ -306,6 +306,70 @@ table#restaurant-hours tr:hover {
 
 /* #endregion */
 
+/* #region Restaurant Review Form Styles */
+
+#review-form-container {
+  box-shadow: 0 0 20px 0 rgba(72, 94, 116, 0.7);
+  font-family: Roboto,sans-serif;
+  
+  box-sizing: border-box;
+  margin: 0 auto;
+  width: 90%;
+  padding: 1em;
+}
+
+.form-header {
+  margin: 0;
+}
+
+form#review-form {
+  display: grid;
+}
+
+label {
+  display: block;
+  line-height: 1.5;
+  padding-top: .7em;
+}
+
+.form-control, select {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1em;
+  font-family: Roboto,sans-serif;
+}
+
+div.form-group, .rating-container {
+  width: 100%;
+}
+
+button.submit-button {
+  box-sizing: border-box;
+  color: var(--white);
+  background: rgb(0, 125, 187);
+  font-style: normal;
+  text-align: center;
+
+  height: 3em;
+  width: 100%;
+}
+
+button.submit-button:hover {
+  color: rgb(224, 224, 224);
+  text-shadow: 0 -.05em 0.05em rgba(0, 0, 0, 0.5);
+  background: rgba(0, 125, 187, 0.795);
+  border: 1px solid rgba(0, 0, 0, 0.164);
+  box-shadow: 0 .05em .25em rgba(0, 0, 0, 0.603);
+}
+
+button.submit-button:focus{
+  background: rgba(2, 149, 223, 0.89);
+  border-color: rgb(255, 115, 0);
+  box-shadow: 0 0 1em 0px rgba(255, 115, 0, 0.842);
+}
+
+/* #endregion */
+
 /* #region Mediaqueries */
 
 @media screen and (min-width: 200px) and (max-width: 768px) {
@@ -319,6 +383,7 @@ table#restaurant-hours tr:hover {
     width: 97vw;
     margin: 0 auto;
   }
+
   body, td, th, p, ul, li {
     font-size: 1.2rem;
   }
@@ -330,17 +395,21 @@ table#restaurant-hours tr:hover {
   #restaurants-list li h1{
     font-size: 1.2em;
   }
+
   #restaurants-list li a {
     font-size: .8em;
   }
+
   .filter-options h2 {
     font-size: 1.7rem;
-  }  
+  }
+
   .filter-options select {
     flex-basis: calc((100% / 2 ) - 1em);
     min-width: 47%;
     margin: .5em;
   }
+
   .filter-options select:last-child {
     margin-top: 8px;
   }
@@ -349,6 +418,7 @@ table#restaurant-hours tr:hover {
     align-self: center;
     width: 95%;
   }
+
   #restaurant-cuisine {
     width: 95%;
     align-self: center;
@@ -357,6 +427,7 @@ table#restaurant-hours tr:hover {
   #restaurant-address {
     padding-left: 2em;
   }
+
   table#restaurant-hours {
     width: 90%;
   }
@@ -365,7 +436,7 @@ table#restaurant-hours tr:hover {
     padding-bottom: 5em;
     width: 90%;
     margin: 0 auto;
-}
+  }
 
 } 
 
@@ -381,18 +452,22 @@ table#restaurant-hours tr:hover {
 
   #restaurants-list li {
     flex-basis: calc((100% / 3 ) - 1em)
-  } 
+  }
+
   #restaurants-list li h1{
     font-size: 1.2em;
   }
+
   .filter-options h2 {
     font-size: 1.7rem;
-  }  
+  }
+
   .filter-options select {
     flex-basis: calc((100% / 2 ) - 1em);
     min-width: 47%;
     margin: .5em;
   }
+
   .filter-options select:last-child {
     margin-top: 8px;
   }
@@ -401,40 +476,50 @@ table#restaurant-hours tr:hover {
     align-self: center;
     width: 90%;
   }
+
   #restaurant-cuisine {
     width: 90%;
     align-self: center;
-}
+  }
 
-#restaurant-address {
-  padding-left: 2em;
-}
-table#restaurant-hours {
-  width: 80%;
-}
+  #restaurant-address {
+    padding-left: 2em;
+  }
 
-.restaurant-view#maincontent {
-  flex-flow: row wrap;
-}
+  table#restaurant-hours {
+    width: 80%;
+  }
 
-#restaurant-container, #reviews-container {
-  width: 50%;
-  margin-top: 1em;
-}
+  .restaurant-view#maincontent {
+    grid-template-areas: 
+    "map map"
+    "info review"
+    "info review"
+    "info form";
+    grid-template-columns: 1fr 1fr;
+  }
 
-#restaurant-container {
-  justify-content: flex-start;
-}
+  #restaurant-container, #reviews-container {
+    /* width: 50%; */
+    margin-top: 1em;
+  }
 
-#reviews-container {
-  padding-bottom: 5em;
-}
+  #restaurant-container {
+    justify-content: flex-start;
+  }
+
+  #reviews-container {
+    padding-bottom: 5em;
+  }
+
+  #review-form-container {
+    width: 98%;
+  }
 
 } 
 
 @media screen and (min-width: 1281px) {
   body {
-    /* background-color: blue; */
     width: 81vw;
     margin: 0 auto;
   }
@@ -449,34 +534,42 @@ table#restaurant-hours {
   #restaurants-list li {
     flex-basis: calc((100% / 5 ) - 1em)
   }
+
   #restaurants-list li h1{
     font-size: 1.05em;
   }
+
   #restaurants-list p {
     margin: 0;
     font-size: .9em;
   }
+
   #restaurants-list p:last-of-type {
     font-size: .714em;
   }
+
   #restaurants-list li a {
     font-size: .8em;
     padding: 0.25rem 0rem 0.2rem;
   }
+
   .filter-options {
     justify-content: flex-start;
   }
+
   .filter-options h2 {
     flex-basis: auto;
     padding-left: 15px;
     text-align: left;
     font-size: .9rem;
   }  
+
   .filter-options select {
     flex-basis: 15%;
     min-width: 15%;
     margin: .5em;
   }
+
   .filter-options select:last-child {
     margin-top: 8px;
   }
@@ -500,11 +593,18 @@ table#restaurant-hours {
   }
 
   .restaurant-view#maincontent {
-    flex-flow: row wrap;
+    /* flex-flow: row wrap; */
+
+    grid-template-areas: 
+    "map map"
+    "info review"
+    "info review"
+    "info form";
+    grid-template-columns: 1fr 1fr;
   }
 
   #restaurant-container, #reviews-container {
-    width: 50%;
+    /* width: 50%; */
     margin-top: 1em;
   }
 
@@ -515,6 +615,11 @@ table#restaurant-hours {
   #reviews-container {
     padding-bottom: 5em;
   }
+
+  #review-form-container {
+    width: 98%;
+  }
+  
 }
 
 @media screen and (min-width: 1440px) {
