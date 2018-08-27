@@ -16,39 +16,28 @@
 </head>
 
 <body class="inside">
-
-  <!-- Beginning header -->
   <header>
 
-    <!-- Beginning nav -->
     <nav>
       <h1><a href="/">Restaurant Reviews</a></h1>
     </nav>
 
-    <!-- Beginning breadcrumb -->
     <!-- https://www.w3.org/TR/wai-aria-practices/examples/breadcrumb/index.html -->
     <ul aria-label="Breadcrumb" role="navigation" id="breadcrumb" >
       <li><a href="/">Home</a></li>
     </ul>
-    <!-- End breadcrumb -->
 
     
-    <!-- End nav -->
     
   </header>
-  <!-- End header -->
   
 
-  <!-- Beginning main -->
   <main class="restaurant-view" id="maincontent">
     
-    <!-- Beginning map -->
     <section id="map-container">
       <div id="map" role="application" aria-hidden="true" ></div>
     </section>
-    <!-- End map -->
 
-    <!-- Beginning restaurant -->
     <section id="restaurant-container">
       <h2 id="restaurant-name"></h2>
       <img id="restaurant-img">
@@ -56,24 +45,23 @@
       <p id="restaurant-address"></p>
       <table id="restaurant-hours"></table>
     </section>
-    <!-- end restaurant -->
 
-    <!-- Beginning reviews -->
     <section id="reviews-container">
       <ul id="reviews-list"></ul>
     </section>
-    <!-- End reviews -->
 
-    <div class="review-container">
+    <section id="review-form-container">
+      <h2 class="form-header" >Write Your Review</h2>
+
       <form id="review-form" action="" method="post">
-        <h2>Write Your Review</h2>
+
         <div class="form-group">
           <label for="name">Name:</label>
           <input class="form-control" type="text" placeholder="Name" name="name" id="name" value="">
         </div>
 
         <div class="rating-container">
-          <p>Rating:</p>
+          <label for="Rating" >Rating:</label>
           <select aria-label="Rating Select" name="Rating" id="rating_select">
             <option value="1">1</option>
             <option value="2">2</option>
@@ -88,19 +76,18 @@
           <textarea class="form-control" rows="5" placeholder="Your Review" name="review" id="review"></textarea>
         </div>
 
-        <input id="submitForm" type="submit">
+        <div>
+        <button id="submitForm" class="submit-button" onclick="submitReview()" >Add Review</button>
+        </div>
         
       </form>
-      </div>
+    </section>
 
   </main>
-  <!-- End main -->
 
-  <!-- Beginning footer -->
   <footer id="footer">
     Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
   </footer>
-  <!-- End footer -->
 
   <!-- Beginning scripts -->
   <!-- https://github.com/aFarkas/lazysizes -->
