@@ -29,6 +29,7 @@ gulp.task(
     gulp.watch('src/*.js', ['sw']);
     gulp.watch('src/*.html', ['html']);
     gulp.watch('./dist/index.html').on('change', browserSync.reload);
+    gulp.watch('./dist/css/*.css').on('change', browserSync.reload);
 
     browserSync.init({
       server: './dist',
