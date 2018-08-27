@@ -13,7 +13,6 @@ const dbPromise = idb.open('mws-restaurants', 1, upgradeDb => {
 // Common database helper functions.
 class DBHelper {
 
-
   // Database URL.
   // Change this to restaurants.json file location on your server.
   static get DATABASE_URL() {
@@ -59,7 +58,6 @@ class DBHelper {
     });
   }
 
-  
   // Fetch restaurants by a cuisine type with proper error handling.
   static fetchRestaurantByCuisine(cuisine, callback) {
     // Fetch all restaurants  with proper error handling
@@ -74,7 +72,6 @@ class DBHelper {
     });
   }
 
-  
   // Fetch restaurants by a neighborhood with proper error handling.
   static fetchRestaurantByNeighborhood(neighborhood, callback) {
     // Fetch all restaurants
@@ -89,7 +86,6 @@ class DBHelper {
     });
   }
 
-  
   // Fetch restaurants by a cuisine and a neighborhood with proper error handling.
   static fetchRestaurantByCuisineAndNeighborhood(cuisine, neighborhood, callback) {
     // Fetch all restaurants
@@ -109,7 +105,6 @@ class DBHelper {
     });
   }
 
-  
   // Fetch all neighborhoods with proper error handling.
   static fetchNeighborhoods(callback) {
     // Fetch all restaurants
@@ -126,7 +121,6 @@ class DBHelper {
     });
   }
 
-  
   // Fetch all cuisines with proper error handling.
   static fetchCuisines(callback) {
     // Fetch all restaurants
