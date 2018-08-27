@@ -1,12 +1,9 @@
 /* eslint-disable */
 
-
 let restaurant;
 var map;
 
-/**
- * Initialize Google map, called from HTML.
- */
+// Initialize Google map, called from HTML.
 window.initMap = () => {
   fetchRestaurantFromURL((error, restaurant) => {
     if (error) { // Got an error!
@@ -23,9 +20,7 @@ window.initMap = () => {
   });
 }
 
-/**
- * Get current restaurant from page URL.
- */
+// Get current restaurant from page URL.
 const fetchRestaurantFromURL = (callback) => {
   if (self.restaurant) { // restaurant already fetched!
     callback(null, self.restaurant)
@@ -48,9 +43,7 @@ const fetchRestaurantFromURL = (callback) => {
   }
 }
 
-/**
- * Create restaurant HTML and add it to the webpage
- */
+// Create restaurant HTML and add it to the webpage
 const fillRestaurantHTML = (restaurant = self.restaurant) => {
   const name = document.getElementById('restaurant-name');
   name.innerHTML = restaurant.name;
@@ -80,9 +73,7 @@ const fillRestaurantHTML = (restaurant = self.restaurant) => {
   fillReviewsHTML();
 }
 
-/**
- * Create restaurant operating hours HTML table and add it to the webpage.
- */
+// Create restaurant operating hours HTML table and add it to the webpage.
 const fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => {
   const hours = document.getElementById('restaurant-hours');
   for (let key in operatingHours) {
@@ -100,9 +91,7 @@ const fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hour
   }
 }
 
-/**
- * Create all reviews HTML and add them to the webpage.
- */
+// Create all reviews HTML and add them to the webpage.
 const fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   const container = document.getElementById('reviews-container');
   const title = document.createElement('h3');
@@ -122,9 +111,7 @@ const fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   container.appendChild(ul);
 }
 
-/**
- * Create review HTML and add it to the webpage.
- */
+// Create review HTML and add it to the webpage.
 const createReviewHTML = (review) => {
   const li = document.createElement('li');
   const name = document.createElement('p');
@@ -146,9 +133,7 @@ const createReviewHTML = (review) => {
   return li;
 }
 
-/**
- * Add restaurant name to the breadcrumb navigation menu
- */
+// Add restaurant name to the breadcrumb navigation menu
 const fillBreadcrumb = (restaurant=self.restaurant) => {
   const breadcrumb = document.getElementById('breadcrumb');
   const li = document.createElement('li');
@@ -156,9 +141,7 @@ const fillBreadcrumb = (restaurant=self.restaurant) => {
   breadcrumb.appendChild(li);
 }
 
-/**
- * Get a parameter by name from page URL.
- */
+// Get a parameter by name from page URL.
 const getParameterByName = (name, url) => {
   if (!url)
     url = window.location.href;
