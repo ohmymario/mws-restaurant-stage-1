@@ -17,12 +17,12 @@ class DBHelper {
   // Change this to restaurants.json file location on your server.
   static get DATABASE_URL() {
     const port = 1337; // Change this to your server port
-    return `http://localhost:${port}/restaurants`;
+    return `http://localhost:${port}`;
   }
 
   // Fetch all restaurants.
   static fetchRestaurants(callback) {
-    fetch(DBHelper.DATABASE_URL)
+    fetch(`${DBHelper.DATABASE_URL}/restaurants`)
       .then(res => {
         return res.json()
       })
@@ -182,14 +182,15 @@ class DBHelper {
   }
 
   static addRestaurantReview(event, formData, id) {
-    console.log("addRestaurantReview Working :)")
+    console.log("addRestaurantReview Function")
     // console.log(formData);
     // console.log(formData.values);
-    console.log(event);
-    console.log(id);
-    console.log(formData.get('name'));
-    console.log(formData.get('rating'));
-    console.log(formData.get('review'));
+
+    // console.log(event);
+    // console.log(id);
+    // console.log(formData.get('name'));
+    // console.log(formData.get('rating'));
+    // console.log(formData.get('review'));
 
     if(!navigator.onLine) {
       // Function to send data once online
@@ -197,17 +198,21 @@ class DBHelper {
     }
   }
 
-  // https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
-  static getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
+  static getRestaurantReviewByID(id, callback) {
+    const url = `${DBHelper.DATABASE_URL}/reviews/?restaurant_id=${id}`;
 
+    return fetch(url)
+    .then(response => {
+      return response.json();
+    })
+    .then(json => {
+      callback(json);
+    })
+    .catch(err => {
+      console.log(err);
+    }) 
+  }
+  
 }
 
 window.DBHelper = DBHelper;

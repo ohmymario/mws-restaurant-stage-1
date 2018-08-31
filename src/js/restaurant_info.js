@@ -69,8 +69,10 @@ const fillRestaurantHTML = (restaurant = self.restaurant) => {
   if (restaurant.operating_hours) {
     fillRestaurantHoursHTML();
   }
+  
   // fill reviews
-  fillReviewsHTML();
+  const id = getParameterByName('id');
+  DBHelper.getRestaurantReviewByID(id, fillReviewsHTML);
 }
 
 // Create restaurant operating hours HTML table and add it to the webpage.
@@ -103,19 +105,9 @@ const fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     const formData = new FormData(form);
-    const id = DBHelper.getParameterByName('id');
+    const id = getParameterByName('id');
     DBHelper.addRestaurantReview(e, formData, id);
-
   })
-
-  // const reviewButton = document.getElementById('submitForm');
-  // console.log(reviewButton);
-
-  // reviewButton.addEventListener('click', function(e) {
-  //   e.preventDefault()
-  //   DBHelper.addRestaurantReview(e);
-  //   console.log(this)
-  // })
 
   if (!reviews) {
     const noReviews = document.createElement('p');
@@ -138,7 +130,8 @@ const createReviewHTML = (review) => {
   li.appendChild(name);
 
   const date = document.createElement('p');
-  date.innerHTML = review.date;
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
+  date.innerHTML = new Date(review.createdAt).toLocaleDateString();
   li.appendChild(date);
 
   const rating = document.createElement('p');
