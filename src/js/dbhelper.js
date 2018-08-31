@@ -180,6 +180,34 @@ class DBHelper {
       });
     })
   }
+
+  static addRestaurantReview(event, formData, id) {
+    console.log("addRestaurantReview Working :)")
+    // console.log(formData);
+    // console.log(formData.values);
+    console.log(event);
+    console.log(id);
+    console.log(formData.get('name'));
+    console.log(formData.get('rating'));
+    console.log(formData.get('review'));
+
+    if(!navigator.onLine) {
+      // Function to send data once online
+      console.log("Your review will be sent once youre back online :)")
+    }
+  }
+
+  // https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+  static getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
 }
 
 window.DBHelper = DBHelper;

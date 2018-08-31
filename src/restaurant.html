@@ -50,16 +50,18 @@
     <section id="review-form-container">
       <h2 class="form-header" >Write Your Review</h2>
 
-      <form id="review-form" action="" method="post">
+      <form id="review-form" name="review-form" action="" method="post">
 
         <div class="form-group">
           <label for="name">Name:</label>
-          <input class="form-control" type="text" placeholder="Name" name="name" id="name" value="">
+          <input class="form-control" type="text" placeholder="Name" name="name" id="name" value="" required >
         </div>
 
         <div class="rating-container">
           <label for="Rating" >Rating:</label>
-          <select aria-label="Rating Select" name="Rating" id="rating_select">
+          <select aria-label="Rating Select" name="rating" id="rating_select" required>
+            <!-- https://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box -->
+            <option value="" disabled selected hidden>Please Choose A Rating</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -70,11 +72,11 @@
 
         <div class="form-group">
           <label class="control-label" for="review">Your Review:</label>
-          <textarea class="form-control" rows="5" placeholder="Your Review" name="review" id="review"></textarea>
+          <textarea class="form-control" rows="5" placeholder="Your Review" name="review" id="review" required ></textarea>
         </div>
 
         <div>
-        <button id="submitForm" class="submit-button" onclick="submitReview()" >Add Review</button>
+        <input id="submitForm" class="submit-button" type="submit" value="Add Review" />
         </div>
         
       </form>

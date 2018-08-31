@@ -98,6 +98,25 @@ const fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   title.innerHTML = 'Reviews';
   container.appendChild(title);
 
+  const form = document.forms.namedItem("review-form");
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const id = DBHelper.getParameterByName('id');
+    DBHelper.addRestaurantReview(e, formData, id);
+
+  })
+
+  // const reviewButton = document.getElementById('submitForm');
+  // console.log(reviewButton);
+
+  // reviewButton.addEventListener('click', function(e) {
+  //   e.preventDefault()
+  //   DBHelper.addRestaurantReview(e);
+  //   console.log(this)
+  // })
+
   if (!reviews) {
     const noReviews = document.createElement('p');
     noReviews.innerHTML = 'No reviews yet!';
