@@ -37,7 +37,21 @@ class DBHelper {
         callback(null, json);
       })
       .catch(error => {
-        callback(error, null);
+
+        dbPromise
+        .then(db => {
+          const tx = db
+          .transaction('restaurants', 'readwrite')
+          .objectStore('restaurants'); 
+
+          tx.getAll()
+          .then(restaurants => {
+            if(!restaurants) {
+              callback(error, null);
+            }
+            callback(null, restaurants);
+          })
+        });
       });
   }
 

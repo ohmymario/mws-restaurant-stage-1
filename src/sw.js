@@ -18,8 +18,6 @@ const urlsToCache = [
 
 // Install Event
 addEventListener('install', event => {
-  console.log('[Serviceworker] Installed');
-
   event.waitUntil(
     caches.open(cacheVersion).then(cache => {
       console.log('Caching Files');
@@ -45,7 +43,8 @@ addEventListener('activate', event => {
 
 // Fetch Event
 addEventListener('fetch', event => {
-  let requestUrl = new URL(event.request.url);
+  const requestUrl = new URL(event.request.url);
+  let eventRequest = event.request;
 
   // Serve cached photo if previously cached
   if (requestUrl.pathname.startsWith('/img/')) {
@@ -55,10 +54,11 @@ addEventListener('fetch', event => {
 
   // Serve default restaurant.html when dynamic restaurant.html requested
   if (requestUrl.pathname.includes('restaurant.html')) {
-    requestUrl = new Request(`restaurant.html`);
+    console.log('restaurant.html');
+    eventRequest = new Request(`restaurant.html`);
   }
 
-  event.respondWith(caches.match(event.request).then(response => response || fetch(event.request)));
+  event.respondWith(caches.match(eventRequest).then(response => response || fetch(event.request)));
 });
 
 function servePhoto(request) {
