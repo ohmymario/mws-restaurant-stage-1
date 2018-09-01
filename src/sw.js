@@ -54,7 +54,6 @@ addEventListener('fetch', event => {
 
   // Serve default restaurant.html when dynamic restaurant.html requested
   if (requestUrl.pathname.includes('restaurant.html')) {
-    console.log('restaurant.html');
     eventRequest = new Request(`restaurant.html`);
   }
 

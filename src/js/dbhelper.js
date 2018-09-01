@@ -37,7 +37,6 @@ class DBHelper {
         callback(null, json);
       })
       .catch(error => {
-
         dbPromise
         .then(db => {
           const tx = db
