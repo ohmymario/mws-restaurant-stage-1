@@ -182,20 +182,33 @@ class DBHelper {
   }
 
   static addRestaurantReview(event, formData, id) {
-    console.log("addRestaurantReview Function")
-    // console.log(formData);
-    // console.log(formData.values);
-
-    // console.log(event);
-    // console.log(id);
-    // console.log(formData.get('name'));
-    // console.log(formData.get('rating'));
-    // console.log(formData.get('review'));
+    const name = formData.get('name')
+    const rating = formData.get('rating')
+    const review = formData.get('review')
+    const fullReview = {
+      name,
+      restaurant_id: parseInt(id),
+      rating: parseInt(rating),
+      comments: review
+    }
 
     if(!navigator.onLine) {
       // Function to send data once online
-      console.log("Your review will be sent once youre back online :)")
+      console.log("Your review will be sent once youre back online :)");
     }
+
+    const url = `${DBHelper.DATABASE_URL}/reviews`;
+    fetch(url, 
+      {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json; charset=utf-8'},
+        body: JSON.stringify(fullReview)
+      })
+      .then(res => {
+        console.log(res);
+        res.json()
+      })
+
   }
 
   static getRestaurantReviewByID(id, callback) {
