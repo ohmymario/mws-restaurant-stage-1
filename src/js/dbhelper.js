@@ -6,6 +6,9 @@ const dbPromise = idb.open('mws-restaurants', 1, upgradeDb => {
   switch (upgradeDb.oldVersion) {
     case 0:
       upgradeDb.createObjectStore('restaurants', { keyPath: 'id' });
+    case 1:
+      const reviewStore = upgradeDb.createObjectStore('reviews', { keyPath: 'id' });
+      reviewStore.createIndex('restaurant_id', 'restaurant_id');
   }
 });
 
@@ -227,16 +230,44 @@ class DBHelper {
   static getRestaurantReviewByID(id, callback) {
     const url = `${DBHelper.DATABASE_URL}/reviews/?restaurant_id=${id}`;
 
-    return fetch(url)
+    fetch(url)
     .then(response => {
       return response.json();
     })
+    // Cache JSON to IDB
     .then(json => {
+      dbPromise
+      .then((db) => {
+        if (!db) return;
+        const tx = db
+          .transaction('reviews','readwrite')
+          .objectStore('reviews');
+        json.forEach((review) => {
+          tx.put(review);
+        });
+      });
       callback(json);
     })
-    .catch(err => {
-      console.log(err);
-    }) 
+    // Return Any Previously Cached JSON When Offline
+    .catch(error => {
+      dbPromise
+      .then(db => {
+        
+        const tx = db
+        .transaction('reviews')
+        .objectStore('reviews');
+        const reviewStore = tx.index('restaurant_id');
+
+        id = parseInt(id);
+        return reviewStore.getAll(id);
+      })
+      .then(reviews => {
+        if(!reviews) {
+          callback(error);
+        }
+        callback(reviews);
+      })
+    });
   }
   
 }
