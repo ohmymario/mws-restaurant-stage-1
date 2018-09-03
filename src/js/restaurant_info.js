@@ -101,11 +101,13 @@ const fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   container.appendChild(title);
 
   const form = document.forms.namedItem("review-form");
+  const id = getParameterByName('id');
 
   form.addEventListener('submit', function(e) {
     e.preventDefault();
+    // https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reset
+    document.getElementById('review-form').reset();
     const formData = new FormData(form);
-    const id = getParameterByName('id');
     DBHelper.addRestaurantReview(e, formData, id);
   })
 

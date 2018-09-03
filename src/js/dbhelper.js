@@ -2,13 +2,15 @@
 
 import idb from "idb";
 
-const dbPromise = idb.open('mws-restaurants', 1, upgradeDb => {
+const dbPromise = idb.open('mws-restaurants', 3, upgradeDb => {
   switch (upgradeDb.oldVersion) {
     case 0:
       upgradeDb.createObjectStore('restaurants', { keyPath: 'id' });
     case 1:
       const reviewStore = upgradeDb.createObjectStore('reviews', { keyPath: 'id' });
       reviewStore.createIndex('restaurant_id', 'restaurant_id');
+    case 2:
+      upgradeDb.createObjectStore("pending", {keyPath: "id", autoIncrement: true});
   }
 });
 
@@ -208,9 +210,17 @@ class DBHelper {
       comments: review
     }
 
+
+    // https://developers.google.com/web/updates/2011/06/navigator-onLine-in-Chrome-Dev-channel
     if(!navigator.onLine) {
-      // Function to send data once online
-      console.log("Your review will be sent once youre back online :)");
+      // Save data once online
+      DBHelper.SavePendingReview(fullReview)
+      
+      // Online -> Try sending to server
+      window.addEventListener('online', function(e) {
+        DBHelper.retryPendingReviews();
+      }, false);
+      return;
     }
 
     const url = `${DBHelper.DATABASE_URL}/reviews`;
@@ -221,12 +231,76 @@ class DBHelper {
         body: JSON.stringify(fullReview)
       })
       .then(res => {
-        console.log(res);
-        res.json()
+        return res.status;
       })
-
   }
 
+  static retryPendingReviews() {
+    dbPromise
+      .then((db) => {
+        if (!db) return;
+        const tx = db
+          .transaction('pending')
+          .objectStore('pending')
+   
+        const pendingStore = tx.getAll();
+        return pendingStore;
+      })
+      .then((reviews) => {
+        reviews.forEach((review) => {
+
+          // https://stackoverflow.com/questions/208105/how-do-i-remove-a-property-from-a-javascript-object
+          const id = review.id;
+          const url = `${DBHelper.DATABASE_URL}/reviews`;
+          delete review.id;
+          
+          fetch(url,
+            {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json; charset=utf-8' },
+              body: JSON.stringify(review)
+            })
+            .then(res => {
+              if (res.status === 201) {
+                DBHelper.removePendingReview(id)
+                return;
+              }
+            })
+        })
+      }) 
+      .catch(error => {
+        console.log(`error ${error}`);
+      })
+  }
+
+  static removePendingReview(id) {
+    dbPromise
+    .then((db) => {
+      if (!db) return;
+      const tx = db
+      .transaction('pending','readwrite')
+      .objectStore('pending')
+      .delete(id);
+    })
+    .catch(error => {
+      console.log(`error ${error}`);
+    })
+  }
+
+  static SavePendingReview(review) {
+    dbPromise
+    .then((db) => {
+      if (!db) return;
+      const tx = db
+      .transaction('pending','readwrite')
+      .objectStore('pending')
+      .put(review);
+    })
+    .catch(error => {
+      console.log(`error ${error}`);
+    })
+  }
+  
   static getRestaurantReviewByID(id, callback) {
     const url = `${DBHelper.DATABASE_URL}/reviews/?restaurant_id=${id}`;
 
@@ -269,6 +343,7 @@ class DBHelper {
       })
     });
   }
+
   
 }
 
