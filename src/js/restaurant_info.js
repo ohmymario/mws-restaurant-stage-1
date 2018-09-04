@@ -119,13 +119,13 @@ const fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   }
   const ul = document.getElementById('reviews-list');
   reviews.forEach(review => {
-    ul.appendChild(createReviewHTML(review));
+    ul.appendChild(createReviewHTML(id, review));
   });
   container.appendChild(ul);
 }
 
 // Create review HTML and add it to the webpage.
-const createReviewHTML = (review) => {
+const createReviewHTML = (id, review) => {
   const li = document.createElement('li');
   const name = document.createElement('p');
   name.innerHTML = review.name;
@@ -143,6 +143,14 @@ const createReviewHTML = (review) => {
   const comments = document.createElement('p');
   comments.innerHTML = review.comments;
   li.appendChild(comments);
+
+  const removeBtn = document.createElement('button');
+  removeBtn.innerHTML = `Delete`
+  removeBtn.setAttribute('aria-label', 'Delete this review');
+  removeBtn.addEventListener('click', function() {
+    // DBHelper.removeRestaurantReview(id, review.id)
+  })
+  li.appendChild(removeBtn);
 
   return li;
 }
