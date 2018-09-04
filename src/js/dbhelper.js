@@ -210,7 +210,6 @@ class DBHelper {
       comments: review
     }
 
-
     // https://developers.google.com/web/updates/2011/06/navigator-onLine-in-Chrome-Dev-channel
     if(!navigator.onLine) {
       // Save data once online
@@ -342,6 +341,39 @@ class DBHelper {
         callback(reviews);
       })
     });
+  }
+
+  static removeRestaurantReview(id) {
+
+    const url = `${DBHelper.DATABASE_URL}/reviews/${id}`;
+
+    fetch(url, { method: 'DELETE' })
+      .then(res => {
+        return res.status;
+      })
+      .catch(err => {
+        console.log(`Error ${err}`);
+      })
+
+    // https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
+    const myNode = document.getElementById(`review-${id}`);
+    while (myNode.firstChild) {
+      myNode.removeChild(myNode.firstChild);
+    }
+
+    dbPromise
+    .then((db) => {
+      if (!db) return;
+      const tx = db
+      .transaction('reviews','readwrite')
+      .objectStore('reviews');
+      
+      const DBreview = tx.delete(id);
+      return DBreview;
+    })
+    .catch(error => {
+      console.log(`error ${error}`);
+    })
   }
 
   

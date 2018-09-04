@@ -106,12 +106,12 @@ const fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     // https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reset
-    document.getElementById('review-form').reset();
     const formData = new FormData(form);
+    document.getElementById('review-form').reset();
     DBHelper.addRestaurantReview(e, formData, id);
   })
 
-  if (!reviews) {
+  if (reviews.length === 0) {
     const noReviews = document.createElement('p');
     noReviews.innerHTML = 'No reviews yet!';
     container.appendChild(noReviews);
@@ -119,14 +119,15 @@ const fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   }
   const ul = document.getElementById('reviews-list');
   reviews.forEach(review => {
-    ul.appendChild(createReviewHTML(id, review));
+    ul.appendChild(createReviewHTML(review));
   });
   container.appendChild(ul);
 }
 
 // Create review HTML and add it to the webpage.
-const createReviewHTML = (id, review) => {
+const createReviewHTML = (review) => {
   const li = document.createElement('li');
+  li.id = `review-${review.id}`;
   const name = document.createElement('p');
   name.innerHTML = review.name;
   li.appendChild(name);
@@ -148,7 +149,8 @@ const createReviewHTML = (id, review) => {
   removeBtn.innerHTML = `Delete`
   removeBtn.setAttribute('aria-label', 'Delete this review');
   removeBtn.addEventListener('click', function() {
-    // DBHelper.removeRestaurantReview(id, review.id)
+    // Possible Button color #d80000
+    DBHelper.removeRestaurantReview(review.id)
   })
   li.appendChild(removeBtn);
 
