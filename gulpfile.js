@@ -26,6 +26,7 @@ gulp.task(
   () => {
     gulp.watch('src/css/*.css', ['styles']);
     gulp.watch('src/js/*.js', ['scripts-dist']);
+    gulp.watch('src/js/dbhelper.js', ['dbhelper']);
     gulp.watch('src/*.js', ['sw']);
     gulp.watch('src/*.html', ['html']);
     gulp.watch('./dist/index.html').on('change', browserSync.reload);
