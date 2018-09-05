@@ -166,11 +166,12 @@ button.favBtn {
 
 #review-form-container {
   grid-area: form;
+  width: 95%;
+  margin: 0 auto;
 }
 
 .inside #map-container {
   height: 30vh;
-  width: 100%;
   right: 0;
   top: 80px;
 }
@@ -199,18 +200,9 @@ button.favBtn {
   width: 100%;
 }
 
-#restaurant-container, #reviews-container {
-  width: 98%;
-  margin: 0 auto;
-  display: flex;
-  flex-flow: column nowrap;
-}
-
 #reviews-list {
   /* margin: 0 auto; */
   padding: 0;
-  display: flex;
-  flex-flow: column nowrap;
   align-items: center;
 }
 
@@ -218,30 +210,45 @@ button.favBtn {
   display: block;
   margin: 0 0 30px;
   position: relative;
-  width: 90%;
-  display: flex;
-  flex-flow: row wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: 
+  'name date '
+  'rating rating'
+  'review review'
+  'button button';
 }
 
 #reviews-list li p:nth-child(-n+2) {
-  flex-basis: 50%;
+  grid-area: name;
+  width: 100%;
   box-sizing: border-box;
   padding: 15px;
   margin: 0;
 }
 
-#reviews-list li p:nth-child(3) {
-  padding: 5px;
-  margin: 10px 20px 10px 20px;
+#reviews-list li p:nth-child(2) {
+  grid-area: date;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-#reviews-list li p:last-child {
-  flex-basis: 100%;
-  padding: 0 20px 20px;
+#reviews-list li p:nth-child(3) {
+  grid-area: rating;
+  padding: 5px;
+  margin: 0 auto;
+  margin: 10px auto 10px 20px;
 }
 
 #reviews-list li p {
-  margin: 0 0 10px;
+  grid-area: review;
+  margin: 0 20px 10px;
+}
+
+#reviews-list button {
+  grid-area: button;
+  margin-left: auto;
+  /* width: auto; */
 }
 
 /* #endregion */
@@ -251,7 +258,7 @@ button.favBtn {
 table#restaurant-hours {
   align-self: center;
   border-collapse: collapse;
-  width: 98%;
+  width: 100%;
 }
 
 #restaurant-hours td {
@@ -260,11 +267,6 @@ table#restaurant-hours {
 
 /* #endregion */
 
-
-
-
-
-
 section {
-  border: 1px solid red;
+  box-sizing: border-box;
 }

@@ -253,7 +253,6 @@ button.favBtnSelected {
   background-color: var(--white);
   border: 2px solid #f3f3f3;
   border-top-left-radius: 20px;
-  border-bottom-right-radius: 20px;
   list-style-type: none;
   overflow: hidden;
 }
@@ -308,9 +307,6 @@ table#restaurant-hours tr:hover {
   box-shadow: 0 0 20px 0 rgba(72, 94, 116, 0.7);
   font-family: Roboto,sans-serif;
   
-  box-sizing: border-box;
-  margin: 0 auto;
-  width: 90%;
   padding: 1em;
 }
 
@@ -410,27 +406,13 @@ button.submit-button:focus{
     margin-top: 8px;
   }
 
-  #restaurant-img {
-    align-self: center;
-    width: 95%;
-  }
-
-  #restaurant-cuisine {
-    width: 95%;
-    align-self: center;
-  }
-
   #restaurant-address {
     padding-left: 2em;
   }
 
-  table#restaurant-hours {
-    width: 90%;
-  }
-
   #reviews-container {
     padding-bottom: 5em;
-    width: 90%;
+    width: 95%;
     margin: 0 auto;
   }
 
@@ -468,22 +450,12 @@ button.submit-button:focus{
     margin-top: 8px;
   }
 
-  #restaurant-img {
-    align-self: center;
-    width: 90%;
-  }
-
-  #restaurant-cuisine {
-    width: 90%;
-    align-self: center;
-  }
-
   #restaurant-address {
     padding-left: 2em;
   }
 
   table#restaurant-hours {
-    width: 80%;
+    width: 100%;
   }
 
   .restaurant-view#maincontent {
@@ -496,16 +468,14 @@ button.submit-button:focus{
   }
 
   #restaurant-container, #reviews-container {
-    /* width: 50%; */
     margin-top: 1em;
-  }
-
-  #restaurant-container {
-    justify-content: flex-start;
   }
 
   #reviews-container {
     padding-bottom: 5em;
+    width: 98%;
+    box-shadow: 0 0 20px 0 rgba(72,94,116,.7);
+    padding: 1em;
   }
 
   #review-form-container {
@@ -570,27 +540,16 @@ button.submit-button:focus{
     margin-top: 8px;
   }
 
-  #restaurant-img {
-    align-self: center;
-    width: 95%;
-  }
-
-  #restaurant-cuisine {
-    width: 95%;
-    align-self: center;
-  }
-
   #restaurant-address {
     padding-left: 2em;
   }
 
   table#restaurant-hours {
-    width: 90%;
+    width: 100%;
+    margin-bottom: 15px;
   }
 
   .restaurant-view#maincontent {
-    /* flex-flow: row wrap; */
-
     grid-template-areas: 
     "map map"
     "info review"
@@ -600,16 +559,15 @@ button.submit-button:focus{
   }
 
   #restaurant-container, #reviews-container {
-    /* width: 50%; */
     margin-top: 1em;
-  }
-
-  #restaurant-container {
-    justify-content: flex-start;
+    margin-left: 10px;
   }
 
   #reviews-container {
     padding-bottom: 5em;
+    width: 98%;
+    box-shadow: 0 0 20px 0 rgba(72,94,116,.7);
+    padding: 1em;
   }
 
   #review-form-container {
