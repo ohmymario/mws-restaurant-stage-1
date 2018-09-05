@@ -199,17 +199,8 @@ class DBHelper {
     })
   }
 
-  static addRestaurantReview(event, formData, id) {
-    const name = formData.get('name')
-    const rating = formData.get('rating')
-    const review = formData.get('review')
-    const fullReview = {
-      name,
-      restaurant_id: parseInt(id),
-      rating: parseInt(rating),
-      comments: review
-    }
-
+  static addRestaurantReview(fullReview) {
+    
     // https://developers.google.com/web/updates/2011/06/navigator-onLine-in-Chrome-Dev-channel
     if(!navigator.onLine) {
       // Save data once online
@@ -223,14 +214,17 @@ class DBHelper {
     }
 
     const url = `${DBHelper.DATABASE_URL}/reviews`;
-    fetch(url, 
+    return fetch(url, 
       {
         method: 'POST',
         headers: {'Content-Type': 'application/json; charset=utf-8'},
         body: JSON.stringify(fullReview)
       })
       .then(res => {
-        return res.status;
+        return res.json()
+      })
+      .then(json => {
+        return json;
       })
   }
 
@@ -347,6 +341,7 @@ class DBHelper {
 
     const url = `${DBHelper.DATABASE_URL}/reviews/${id}`;
 
+    // Delete From Server
     fetch(url, { method: 'DELETE' })
       .then(res => {
         return res.status;
@@ -355,12 +350,10 @@ class DBHelper {
         console.log(`Error ${err}`);
       })
 
-    // https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
-    const myNode = document.getElementById(`review-${id}`);
-    while (myNode.firstChild) {
-      myNode.removeChild(myNode.firstChild);
-    }
-
+    // Remove Visual Review from Users View  
+    document.getElementById(`review-${id}`).remove();
+  
+    // Delete from Database 
     dbPromise
     .then((db) => {
       if (!db) return;

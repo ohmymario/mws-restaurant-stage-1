@@ -238,10 +238,6 @@ button.favBtnSelected {
   text-transform: uppercase;
 }
 
-#restaurant-container, #reviews-container {
-  justify-content: center;
-}
-
 #reviews-container h2 {
   color: #f58500;
   font-size: 2rem;

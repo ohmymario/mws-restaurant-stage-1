@@ -101,18 +101,37 @@ const fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   container.appendChild(title);
 
   const form = document.forms.namedItem("review-form");
-  const id = getParameterByName('id');
 
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     // https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reset
     const formData = new FormData(form);
+    const id = getParameterByName('id');
+
+    const name = formData.get('name')
+    const rating = formData.get('rating')
+    const review = formData.get('review')
+
+    const fullReview = {
+      name,
+      restaurant_id: parseInt(id),
+      rating: parseInt(rating),
+      comments: review
+    }
+
     document.getElementById('review-form').reset();
-    DBHelper.addRestaurantReview(e, formData, id);
+    DBHelper.addRestaurantReview(fullReview)
+    .then(res => {
+      const ul = document.getElementById('reviews-list');
+      ul.appendChild(createReviewHTML(res));
+      container.appendChild(ul);
+      document.getElementById('NoReview').remove();
+    })  
   })
 
   if (reviews.length === 0) {
     const noReviews = document.createElement('p');
+    noReviews.id = `NoReview`;
     noReviews.innerHTML = 'No reviews yet!';
     container.appendChild(noReviews);
     return;
