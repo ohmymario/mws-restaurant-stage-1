@@ -73,15 +73,6 @@ const fillCuisinesHTML = (cuisines = self.cuisines) => {
 
 // Initialize Google map, called from HTML.
 window.initMap = () => {
-  let loc = {
-    lat: 40.722216,
-    lng: -73.987501
-  };
-  self.map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 12,
-    center: loc,
-    scrollwheel: false
-  });
   updateRestaurants();
 }
 
@@ -126,6 +117,30 @@ const fillRestaurantsHTML = (restaurants = self.restaurants) => {
     ul.append(createRestaurantHTML(restaurant));
   });
   addMarkersToMap();
+
+  const mapIMG = document.getElementById("map-img");
+
+  if(mapIMG) {
+    mapIMG.addEventListener('click', loadMap);
+  }
+}
+
+const loadMap = () => {
+  updateRestaurants();
+
+  if(document.getElementById("map-img")) {
+    document.getElementById("map-img").remove()
+  }
+  
+  let loc = {
+    lat: 40.722216,
+    lng: -73.987501
+  };
+  self.map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 12,
+    center: loc,
+    scrollwheel: false
+  });
 }
 
 // Create restaurant HTML.

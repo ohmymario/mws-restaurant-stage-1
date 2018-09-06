@@ -3,7 +3,7 @@
   
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0275d8">
   <link rel="manifest" href="manifest.json">
   <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet"> -->
@@ -25,7 +25,15 @@
 
   <main id="maincontent">
     <section id="map-container">
-      <div id="map" role="application" aria-hidden="true" ></div>
+      <div id="map" role="application" aria-hidden="true" >
+        <img id="map-img" src="https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=12&size=640x300&maptype=roadmap
+        &markers=color:red%7Clabel:A%7C40.713829,-73.989667&markers=color:red%7Clabel:B%7C40.683555,-73.966393
+        &markers=color:red%7Clabel:C%7C40.747143,-73.985414&markers=color:red%7Clabel:D%7C40.722216,-73.987501
+        &markers=color:red%7Clabel:E%7C40.705089,-73.933585&markers=color:red%7Clabel:F%7C40.674925,-74.016162
+        &markers=color:red%7Clabel:G%7C40.727397,-73.983645&markers=color:red%7Clabel:H%7C40.726584,-74.002082
+        &markers=color:red%7Clabel:I%7C40.743797,-73.950652&markers=color:red%7Clabel:J%7C40.743394,-73.954235&
+        &key=AIzaSyBczOijXe6nN1dOZStJLFAimLkiEaVFcuo" alt="Map of New York Restaurants">
+      </div>
     </section>
     <section>
       <div class="filter-options" id="filter">
